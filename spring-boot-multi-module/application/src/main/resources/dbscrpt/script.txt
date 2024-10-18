@@ -1,0 +1,871 @@
+ALTER TABLE `wg2015`.`emp_master` 
+ADD COLUMN `contact_no` VARCHAR(15) NULL DEFAULT NULL AFTER `salary`,
+ADD COLUMN `mail_id` VARCHAR(45) NULL AFTER `contact_no`;
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+ALTER TABLE `wg2015`.`tbl_location` 
+ADD COLUMN `state` VARCHAR(45) NULL DEFAULT NULL,
+ADD COLUMN `country_code` VARCHAR(45) NULL DEFAULT NULL ,
+ADD COLUMN `country` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+
+ALTER TABLE `wg2015`.`tbl_party_info`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `wg2015`.`credit_teriffmaster`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `wg2015`.`country`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+
+ALTER TABLE `wg2015`.`state`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `wg2015`.`card_type`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `wg2015`.`branch_master`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `wg2015`.`stockincnote`
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_by` VARCHAR(45) NULL DEFAULT NULL ;
+ADD COLUMN `created_date` DATE NULL DEFAULT NULL ;
+ADD COLUMN `updatedd_date` DATE NULL DEFAULT NULL ;
+
+
+ALTER TABLE `nchethana2020`.`purchase_invoive_det` 
+CHANGE COLUMN `qty` `qty` DECIMAL(10,2) NULL DEFAULT NULL ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `country` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `country_name` varchar(45) DEFAULT NULL,
+  `country_code` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `state` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `state` varchar(50) DEFAULT NULL,
+  `address` varchar(300) DEFAULT NULL,
+  `gst` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE `party_master_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `branch_id` int DEFAULT NULL,
+  `branch_name` varchar(45) DEFAULT NULL,
+  `branch_code` varchar(45) DEFAULT NULL,
+  `location_name` varchar(45) DEFAULT NULL,
+  `party_fname` varchar(45) DEFAULT NULL,
+  `party_sname` varchar(45) DEFAULT NULL,
+  `party_code` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+ALTER TABLE `wg2015`.`users` 
+ADD COLUMN `firstname` VARCHAR(45) NULL AFTER `email`,
+ADD COLUMN `lastname` VARCHAR(45) NULL AFTER `firstname`,
+ADD COLUMN `mobile_no` VARCHAR(45) NULL AFTER `lastname`,
+ADD COLUMN `address` VARCHAR(145) NULL AFTER `mobile_no`,
+ADD COLUMN `pic_byte` BLOB NULL AFTER `address`,
+ADD COLUMN `role` VARCHAR(45) NULL AFTER `pic_byte`,
+ADD COLUMN `role_id` INT NULL AFTER `role`;
+
+INSERT INTO `nchethana2020`.`screen` (`screen_name`, `enabled`) VALUES ('UserMasters', 'Y');
+
+-------------Created date and time column is add------------------
+ALTER TABLE `nchethana2020`.`author_master` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`category` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL ,
+ADD COLUMN `created_date` DATETIME NULL ,
+ADD COLUMN `updated_date` DATETIME NULL ;
+-----------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_location2` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL ,
+ADD COLUMN `created_date` DATETIME NULL ,
+ADD COLUMN `updated_date` DATETIME NULL ;
+----------------------------------------------------
+ALTER TABLE `nchethana2020`.`department` 
+ADD COLUMN `created_by` VARCHAR(45) NULL,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-----------------------------------------------------------
+ALTER TABLE `nchethana2020`.`designation` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-----------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`employee_master` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_location` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+---------------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_party_info` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-----------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`modeofpayment` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+---------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_product_groups` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`subjects` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+-------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_product_info` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATETIME NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATETIME NULL AFTER `created_date`;
+------------------------------------------------------------------------
+------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`stock_verification` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+
+---------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`purchasereturns` 
+ADD COLUMN `pur_inv_dt` DATE NULL ,
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+
+-----------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`stock_receipts` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `created_date` DATE NULL AFTER `created_by`,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_date`,
+ADD COLUMN `updated_date` DATE NULL AFTER `updated_by`;
+---------------------------------------------------
+CREATE TABLE `notification_master` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `message` varchar(250) DEFAULT NULL,
+  `created_by` varchar(20) DEFAULT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1
+------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_product_info` 
+CHANGE COLUMN `vat` `rate` DECIMAL(10,2) NULL DEFAULT NULL ;
+-----------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_product_info` 
+CHANGE COLUMN `discount` `discount` DECIMAL(10,2) NULL DEFAULT NULL ;
+--------------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`payments` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+------------------------------------------
+ALTER TABLE `nchethana2020`.`purchase_invoive_det` 
+CHANGE COLUMN `qty` `qty` DECIMAL(10,2) NULL DEFAULT NULL ;
+---------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_stock_info` 
+CHANGE COLUMN `user_id` `user_id` INT NULL DEFAULT NULL ;
+--------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_stock_info` 
+ADD COLUMN `txn_id` INT NULL AFTER `user_id`;
+------------------------------------------------------
+ALTER TABLE `nchethana2020`.`purchase_invoive` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`purchasereturns` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL ,
+ADD COLUMN `created_date` DATETIME NULL ,
+ADD COLUMN `updated_date` DATETIME NULL ;
+-------------------------------------------
+
+---------------------------------------------------
+ALTER TABLE `nchethana2020`.`tbl_stock_info` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+-------------------------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`receipts` 
+ADD COLUMN `created_by` VARCHAR(45) NULL,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`,
+ADD COLUMN `particulars` VARCHAR(45) NULL ;
+--------------------------------------------------------
+ALTER TABLE `nchethana2018`.`payments` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+-------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`purchasereturns` 
+CHANGE COLUMN `PurInv_dt` `pur_inv_dt` DATE NULL DEFAULT NULL ;
+---------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`stocktransfers` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+--------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`stockentry` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`stock_requisition` 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+----------------------------------------------------------
+CREATE TABLE `membership` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `customer_name` varchar(45) DEFAULT NULL,
+  `pan_no` varchar(45) DEFAULT NULL,
+  `membership_no` varchar(45) DEFAULT NULL,
+  `adress` varchar(45) DEFAULT NULL,
+  `amount_paid` varchar(45) DEFAULT NULL,
+  `phone_no` varchar(45) DEFAULT NULL,
+  `validity_date` varchar(45) DEFAULT NULL,
+  `email_id` varchar(45) DEFAULT NULL,
+  `year` varchar(45) DEFAULT NULL,
+  `expiry_date` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+------------------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.invoice 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+----------------------------------------------------------
+ALTER TABLE `nchethana2018`.`subjects` 
+ADD COLUMN `subjectcode` VARCHAR(45) NULL AFTER `updated_date`;
+----------------------------------------------------------------
+ALTER TABLE `nchethana2020`.`categorys` 
+ADD COLUMN `categorycode` VARCHAR(45) NULL ;
+----------------------------------------------------
+ALTER TABLE `nchethana2020`.categorys 
+ADD COLUMN `created_by` VARCHAR(45) ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+---------------------------------------------------------------
+CREATE TABLE `report` (
+  `report_id` INT NOT NULL,
+  `isEnabled` VARCHAR(45) NULL,
+  `report_name` VARCHAR(45) NULL,
+  `report_type` VARCHAR(45) NULL,
+  `sql_from_qry` TEXT NULL,
+  `sql_group_qry` TEXT NULL,
+  `sql_other_qry` TEXT NULL,
+  `sql_select_qry` TEXT NULL,
+  `sql_where_qry` TEXT NULL,
+  `sql_others_q` TEXT NULL,
+  `created_by` VARCHAR(45) NULL,
+  `updated_by` VARCHAR(45) NULL,
+  `created_date` DATE NULL,
+  `updated_date` DATE NULL,
+  PRIMARY KEY (`report_id`));
+  -----------------------------------------------------------------
+  
+  ALTER TABLE `sss`.`purchase_invoive` 
+ADD COLUMN `other_charges` DECIMAL(9,2) NULL AFTER `updated_date`;
+
+----------------------------------------------------
+ALTER TABLE `sss`.` membership` 
+ADD COLUMN `created_by`  VARCHAR(45) NULL AFTER `expiry_date`,
+ADD COLUMN `updated_by`  VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date`  DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date`  DATE NULL AFTER `created_date`;
+-------------------------------------------------------------
+ALTER TABLE `report` 
+DROP COLUMN `sql_others_q`,
+DROP COLUMN `sql_where_qry`,
+CHANGE COLUMN `is_enabled` `is_enabled` VARCHAR(1) NULL DEFAULT NULL ,
+CHANGE COLUMN `sql_from_qry` `sql_select_qry` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `sql_group_qry` `to_date` VARCHAR(1) NULL DEFAULT NULL ,
+CHANGE COLUMN `sql_other_qry` `location` VARCHAR(1) NULL DEFAULT NULL ,
+CHANGE COLUMN `sql_select_qry` `from_date` VARCHAR(1) NULL DEFAULT NULL ;
+------------------------------------------------------------------------
+ ALTER TABLE `purchase_invoive` 
+ADD COLUMN `other_charges` DECIMAL(9,2) NULL;
+---------------------------------------------------------
+INSERT INTO tbl_autonumber_location (txn_id, txn_detail_id, prefix, number, suffix, location_id, lookup_field_name, lookup_field_value, month_id)
+VALUES ( '13274', '13274', 'PI-', '1', '-22', '11', NULL, NULL, NULL
+),( '51', '51', 'PR-', '3', '-22', '11', NULL, NULL, NULL
+);
+----------------------------------------------------------------------------------------
+ALTER TABLE `report` 
+ADD COLUMN `enable_to_user_id` INT NULL ,
+ADD COLUMN `enable_to_role_id` INT NULL AFTER `enable_to_user_id`,
+ADD COLUMN `jasper` VARCHAR(1) NULL AFTER `enable_to_role_id`
+ADD COLUMN `jasper_name` VARCHAR(45) NULL AFTER `jasper`;
+-------------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`tbl_stock_info` 
+ADD COLUMN `cum_qty` DECIMAL(10,3) ;
+
+ALTER TABLE `nchethana2018`.`tbl_stock_info` 
+ADD COLUMN `fld_sunit` DECIMAL(10,3) NULL AFTER `cum_qty`;
+
+ALTER TABLE `nchethana2018`.`tbl_stock_info` 
+ADD COLUMN `fld_srate` DECIMAL(10,3) NULL AFTER `fld_sunit`;
+-----------------------------------------------------------------------------------
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `new_view_batchno_cumqty3` AS
+    SELECT 
+        `t`.`product_id` AS `id`,
+        `t`.`location_id` AS `location_id`,
+        `d`.`supp_name` AS `supp_name`,
+        `t`.`cum_qty` AS `cum_qty`,
+        `t`.`fld_sunit` AS `fld_sunit`,
+        (`t`.`cum_qty` * `t`.`fld_sunit`) AS `qtytab`,
+        `p`.`product_code` AS `product_code`,
+        `p`.`prod_name` AS `prod_name`,
+        IF(((`p`.`product_group` = 'VPH')
+                OR (`p`.`product_group` = 'NPH')),
+            (`d`.`discount` - 5),
+            `d`.`discount`) AS `fld_disc`,
+        `p`.`isbn_code` AS `isbn_code`,
+        `p`.`product_group` AS `product_group`,
+        `d`.`rate` AS `product_rate`,
+        `p`.`author` AS `author`,
+        `pa`.`party_name` AS `publisher_name`,
+        `t`.`fld_srate` AS `fld_srate`,
+        `d`.`discount` AS `discount`
+    FROM
+        ((`tbl_product_details` `d`
+        LEFT JOIN (`tbl_stock_info` `t`
+        LEFT JOIN `tbl_product_info` `p` ON ((`p`.`id` = `t`.`product_id`))) ON ((`t`.`product_id` = `d`.`base_id`)))
+        JOIN `tbl_party_info` `pa` ON ((`p`.`publisher` = `pa`.`id`)))
+----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------
+create table payment_type as select * from mode_despatch
+
+-------------------------------------------------
+CREATE TABLE `payment_type` (
+  `id` int NOT NULL DEFAULT '0',
+  `payment_type` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+-------------------------------------------------------
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `title_view3` AS select `nchethana2018`.`tbl_product_info`.`id` AS `id`,`nchethana2018`.`tbl_product_info`.`prod_name` AS `prod_name`,`nchethana2018`.`tbl_product_info`.`product_group` AS `product_group`,`nchethana2018`.`tbl_product_info`.`product_code` AS `product_code`,`nchethana2018`.`tbl_product_info`.`description` AS `product_description`,`nchethana2018`.`tbl_product_info`.`subject` AS `product_subject`,`nchethana2018`.`tbl_product_info`.`author` AS `author`,`nchethana2018`.`tbl_product_info`.`published_year` AS `published_year`,`nchethana2018`.`tbl_product_info`.`bin_no` AS `bin_no`,`nchethana2018`.`tbl_product_info`.`rack_no` AS `rack_no`,`nchethana2018`.`tbl_product_details`.`rate` AS `product_rate`,`nchethana2018`.`tbl_product_details`.`discount` AS `discount`,`nchethana2018`.`tbl_product_details`.`party_id` AS `supp_id`,`nchethana2018`.`tbl_product_details`.`supp_name` AS `supp_name`,`nchethana2018`.`tbl_party_info`.`party_name` AS `publisher_name`,`nchethana2018`.`tbl_product_info`.`publisher` AS `publisher_id` from ((`nchethana2018`.`tbl_product_info` left join `nchethana2018`.`tbl_product_details` on((`nchethana2018`.`tbl_product_info`.`id` = `nchethana2018`.`tbl_product_details`.`base_id`))) left join `nchethana2018`.`tbl_party_info` on((`nchethana2018`.`tbl_product_info`.`publisher` = `nchethana2018`.`tbl_party_info`.`id`)))
+---------------------------------------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`tbl_stock_info` 
+ADD COLUMN `lifo_qty` DECIMAL(10,3) NULL AFTER `fld_srate`,
+ADD COLUMN `fifo_qty` DECIMAL(10,3) NULL AFTER `lifo_qty`,
+ADD COLUMN `lifo_value` DECIMAL(10,3) NULL AFTER `fifo_qty`,
+ADD COLUMN `fifo_value` DECIMAL(10,3) NULL AFTER `lifo_value`,
+ADD COLUMN `lifo_val` DECIMAL(10,3) NULL AFTER `fifo_value`,
+ADD COLUMN `fifo_val` DECIMAL(10,3) NULL AFTER `lifo_val`,
+ADD COLUMN `wet_avg_value` DECIMAL(10,3) NULL AFTER `fifo_val`,
+ADD COLUMN `wet_avg_rate` DECIMAL(10,3) NULL AFTER `wet_avg_value`;
+-----------------------------------------------------------------------------
+
+
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `title_view3` AS
+    SELECT 
+        `nchethana2018`.`tbl_product_info`.`id` AS `id`,
+        `nchethana2018`.`tbl_product_info`.`prod_name` AS `prod_name`,
+        `nchethana2018`.`tbl_product_info`.`product_group` AS `product_group`,
+        `nchethana2018`.`tbl_product_info`.`product_code` AS `product_code`,
+        `nchethana2018`.`tbl_product_info`.`description` AS `product_description`,
+        `nchethana2018`.`tbl_product_info`.`subject` AS `product_subject`,
+        `nchethana2018`.`tbl_product_info`.`author` AS `author`,
+        `nchethana2018`.`tbl_product_info`.`published_year` AS `published_year`,
+        `nchethana2018`.`tbl_product_info`.`bin_no` AS `bin_no`,
+        `nchethana2018`.`tbl_product_info`.`rack_no` AS `rack_no`,
+        `nchethana2018`.`tbl_product_details`.`rate` AS `product_rate`,
+        `nchethana2018`.`tbl_product_details`.`discount` AS `discount`,
+        `nchethana2018`.`tbl_product_details`.`party_id` AS `supp_id`,
+        `nchethana2018`.`tbl_product_details`.`supp_name` AS `supp_name`,
+        `nchethana2018`.`tbl_party_info`.`party_name` AS `publisher_name`,
+        `nchethana2018`.`tbl_product_info`.`publisher` AS `publisher_id`
+    FROM
+        ((`nchethana2018`.`tbl_product_info`
+        LEFT JOIN `nchethana2018`.`tbl_product_details` ON ((`nchethana2018`.`tbl_product_info`.`id` = `nchethana2018`.`tbl_product_details`.`base_id`)))
+        LEFT JOIN `nchethana2018`.`tbl_party_info` ON ((`nchethana2018`.`tbl_product_info`.`publisher` = `nchethana2018`.`tbl_party_info`.`id`)))
+  -----------------------------------------------------------------------------------------
+  
+  ALTER TABLE `newnchethana`.`purchasereturns_detail` 
+CHANGE COLUMN `qty` `qty` DECIMAL(10,2) NULL DEFAULT NULL ;
+
+---------------------------------------------------------------------------------
+
+ALTER TABLE `salesretuens` 
+ADD COLUMN `created_by` VARCHAR(45) NULL DEFAULT NULL AFTER `Address`;
+----------------------------------------------------------------------------------
+
+ALTER TABLE `navachethana`.`salesretuens` 
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+--------------------------------------------------------------------------------
+
+ALTER TABLE `navachethana`.`salesretuens` 
+ADD COLUMN `cash` DECIMAL(10,3) NULL AFTER `created_by`;
+------------------------------------------------------------
+
+ALTER TABLE `navachethana`.`salesretuens` 
+ADD COLUMN `Cheque` VARCHAR(45) NULL AFTER `cash`,
+ADD COLUMN `chq_no` INT NULL AFTER `Cheque`,
+ADD COLUMN `chq_dtl` VARCHAR(45) NULL AFTER `chq_no`,
+ADD COLUMN `comment` VARCHAR(45) NULL AFTER `chq_dtl`,
+ADD COLUMN `ref_date` DATE NULL AFTER `comment`,
+ADD COLUMN `vch_id` INT NULL AFTER `ref_date`,
+ADD COLUMN `Inv_Dt` DATE NULL AFTER `vch_id`,
+ADD COLUMN `vat` VARCHAR(45) NULL AFTER `Inv_Dt`,
+ADD COLUMN `discount` VARCHAR(45) NULL AFTER `vat`;
+ADD COLUMN `disc_amt` VARCHAR(45) NULL AFTER `discount`;
+ADD COLUMN `Inv_No` VARCHAR(45) NULL AFTER `disc_amt`;
+ADD COLUMN `location_id` VARCHAR(45) NULL AFTER `Inv_No`;
+ADD COLUMN `ref_no` VARCHAR(45) NULL AFTER `location_id`;
+----------------------------------------------------------------------------
+
+ALTER TABLE `navachethana`.`salesretuens` 
+CHANGE COLUMN `chq_dtl` `chq_dt` VARCHAR(45) NULL DEFAULT NULL ;
+-------------------------------------------------------------------------------
+
+ALTER TABLE `navachethana`.`salesretuens` 
+CHANGE COLUMN `Cheque` `Cheque` DECIMAL(12) NULL DEFAULT NULL ,
+CHANGE COLUMN `chq_no` `chq_no` VARCHAR(20) NULL DEFAULT NULL ,
+CHANGE COLUMN `location_id` `location_id` INT NULL DEFAULT NULL ;
+
+----------------------------------------------------------------------
+
+ALTER TABLE `newnchethana`.`invoice` 
+CHANGE COLUMN `chq_date` `chq_date` DATE NULL DEFAULT NULL ;
+-----------------------------------------------------------------
+
+ALTER TABLE `newnchethana`.`invoice` 
+ADD COLUMN `bank` VARCHAR(45) NULL AFTER `qty`;
+----------------------------------------------------------
+
+
+INSERT INTO `newnchethana`.`screen` (`screen_name`, `enabled`) VALUES ('StockSummaryReport', 'Y');
+
+---------------------------------------------------
+
+INSERT INTO `newnchethana`.`screen_operation_role_map` (`id`, `screen_id`, `role_id`, `operation_id`, `enabled`) VALUES ('67', '33', '2', '1', 'Y');
+--------------------------------------------------------------------
+
+ALTER TABLE `nchethana2020`.`tbl_stock_info` 
+ADD COLUMN `lifo_val` DECIMAL(15,3) NULL AFTER `screen_id`,
+ADD COLUMN `fifo_val` DECIMAL(15,3) NULL AFTER `lifo_val`,
+ADD COLUMN `warate` DECIMAL(15,3) NULL AFTER `fifo_val`,
+ADD COLUMN `wavalue` DECIMAL(15,3) NULL AFTER `warate`;
+
+------------------------------------------
+
+ALTER TABLE `nchethana2020`.`invoice` 
+ADD COLUMN `qty` DECIMAL(15,3) NULL AFTER `updated_date`,
+ADD COLUMN `branch1` VARCHAR(45) NULL AFTER `qty`;
+
+-----------------------------------------------
+
+ALTER TABLE `nchethana2020`.`salesreturns` 
+ADD COLUMN `created_by` VARCHAR(45) NULL AFTER `disc_amt`,
+ADD COLUMN `updated_by` VARCHAR(45) NULL AFTER `created_by`,
+ADD COLUMN `created_date` DATE NULL AFTER `updated_by`,
+ADD COLUMN `updated_date` DATE NULL AFTER `created_date`;
+---------------------------------------------------------------------------------------------------------------
+ CREATE VIEW  
+view_batchno_cumqty9 AS  
+select t.id AS stock_id,t.product_id AS product_id,t.product_id AS id,t.location_id AS location_id,d.supp_name AS supp_name,t.qty,t.cum_qty AS cum_qty,t.fld_sunit AS fld_sunit,(t.cum_qty * t.fld_sunit) AS qtytab,p.product_code AS product_code,p.prod_name AS prod_name,d.discount AS fld_disc,p.isbn_code AS isbn_code,p.product_group AS product_group,d.rate AS rate,d.rate AS product_rate,p.author AS author,pa.party_name AS publisher_name,t.fld_srate AS fld_srate,d.discount AS discount from ((nchethana2020.tbl_product_details d left join (nchethana2020.tbl_stock_info t left join nchethana2020.tbl_product_info p on((p.id = t.product_id))) on((t.product_id = d.base_id))) join nchethana2020.tbl_party_info pa on((p.publisher = pa.id))) where (t.last_row = _latin1'TRUE');
+------------------------------------------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `sum_qty`(prod_id INTEGER,location_id INTEGER) RETURNS int
+BEGIN
+DECLARE qty INTEGER;
+SELECT sum(qty) INTO qty FROM nchethana2020.tbl_stock_info  where product_id=prod_id and location_id=location_id and txn_function='PLUS';
+RETURN qty;
+END
+-----------------------------------------------------------------------------------------------
+CREATE DEFINER=`root`@`localhost` FUNCTION `sum_qty`(iqty decimal,prod_id INTEGER,location_id INTEGER) RETURNS int
+BEGIN
+DECLARE id INTEGER;
+select id into id from  tbl_stock_info where product_id=prod_id and location_id=location_id and txn_function='PLUS' order by id desc limit 1;
+UPDATE tbl_stock_info
+SET cum_qty=iqty,last_row='TRUE'
+ where product_id=prod_id and location_id=location_id and txn_function='PLUS' and id=id;
+RETURN id;
+END
+---------------------------------------------------------------------
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQty`(INOUT loc_id integer)
+BEGIN
+     DECLARE done INT DEFAULT 0;
+      DECLARE id1 INTEGER;
+       DECLARE qty1 INTEGER;
+        DECLARE product_id1 INTEGER;
+     
+      DECLARE cur CURSOR FOR select  id,product_id,sum(qty) as qty FROM nchethana2020.tbl_stock_info where location_id=loc_id  group by product_id;
+      DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+      OPEN cur;
+      label: LOOP
+      FETCH cur INTO id1, product_id1, qty1;
+      call log_msg(concat('id: ', id1, ' and qty ', qty1));
+      UPDATE tbl_stock_info SET cum_qty=qty1,last_row='TRUE' where product_id=product_id1 and location_id=loc_id and txn_function='PLUS' and id=id1;
+      IF done = 1 THEN LEAVE label;
+      END IF;
+      END LOOP;
+      CLOSE cur;
+   
+END//
+DELIMITER ;
+-----------------------------------------------------------------------------
+set @loc_id = 2;
+call nchethana2020.updateQty(@loc_id);
+select @loc_id;
+------------------------------------------------
+CREATE TABLE `nchethana2020`.`logtable` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `msg` VARCHAR(425) NULL,
+  PRIMARY KEY (`id`));
+  ---------------------------------------------
+How to debug a MySQL stored procedure.
+
+Poor mans debugger:
+
+Create a table called logtable with two columns, id INT and log VARCHAR(255).
+
+Make the id column autoincrement.
+
+Use this procedure:
+
+delimiter //
+DROP PROCEDURE `log_msg`//
+CREATE PROCEDURE `log_msg`(msg VARCHAR(255))
+BEGIN
+    insert into logtable select 0, msg;
+END
+Put this code anywhere you want to log a message to the table.
+
+call log_msg(concat('myvar is: ', myvar, ' and myvar2 is: ', myvar2));
+--------------------------------------------------
+CREATE TABLE `purchasereturns_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `product_id` int NOT NULL,
+  `qty` decimal(10,2) DEFAULT NULL,
+  `rate` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(20,2) DEFAULT NULL,
+  `batch_no` varchar(20) DEFAULT NULL,
+  `mfgdt` varchar(10) DEFAULT NULL,
+  `exp_dt` varchar(10) DEFAULT NULL,
+  `mrp` varchar(50) DEFAULT NULL,
+  `Lns` varchar(50) DEFAULT NULL,
+  `Remark` varchar(300) DEFAULT NULL,
+  `discamt` decimal(10,2) DEFAULT NULL,
+  `fld_qty1` int DEFAULT NULL,
+  `fld_qty2` decimal(12,3) DEFAULT NULL,
+  `purity` varchar(10) DEFAULT '92.5%',
+  `fld_qty3` decimal(12,2) DEFAULT NULL,
+  `product_code` varchar(200) DEFAULT NULL,
+  `product_name` varchar(250) NOT NULL,
+  `VAT_pc` decimal(10,2) DEFAULT NULL,
+  `ED_pc` decimal(10,2) DEFAULT NULL,
+  `Qty_Dely2` decimal(10,3) DEFAULT NULL,
+  `Dely_Date2` date DEFAULT NULL,
+  `ed_amt` decimal(13,2) DEFAULT NULL,
+  `variation_pc` decimal(12,2) DEFAULT NULL,
+  `supp_rate` decimal(12,2) DEFAULT NULL,
+  `pkg_fwdg` decimal(12,2) DEFAULT NULL,
+  `TOT_amt` decimal(12,2) DEFAULT NULL,
+  `VAT_amt` decimal(13,2) DEFAULT NULL,
+  `CST_pc` decimal(20,2) DEFAULT NULL,
+  `CST_Amt` decimal(20,2) DEFAULT NULL,
+  `disc_pc` decimal(12,2) DEFAULT NULL,
+  `basic_value` decimal(15,3) DEFAULT NULL,
+  `qty_po` decimal(12,3) DEFAULT NULL,
+  `spl_note` varchar(150) DEFAULT NULL,
+  `prod_name1` varchar(200) DEFAULT NULL,
+  `pkg_fwd_pc` decimal(10,2) DEFAULT NULL,
+  `vch_id` varchar(50) DEFAULT NULL,
+  `net_amt` decimal(10,2) DEFAULT NULL,
+  `author` varchar(150) DEFAULT NULL,
+  `publisher` varchar(150) DEFAULT NULL,
+  `supplier` varchar(150) DEFAULT NULL,
+  `fld_srate` decimal(10,2) DEFAULT NULL,
+  `fld_disc` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `base_id` (`base_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13566 DEFAULT CHARSET=latin1
+-----------------------------------------------------------------------------------------
+CREATE TABLE `salesreturns_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `qty` int DEFAULT '1',
+  `rate` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(15,2) DEFAULT NULL,
+  `batch_no` varchar(20) DEFAULT NULL,
+  `exp_dt` varchar(40) DEFAULT NULL,
+  `fld_mfgdt` date DEFAULT NULL,
+  `pack` varchar(10) DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `batch_tracker` varchar(45) DEFAULT '0',
+  `fld_qty2` decimal(12,3) DEFAULT NULL,
+  `fld_length` int DEFAULT NULL,
+  `purity` decimal(7,2) DEFAULT '92.50',
+  `fld_qty1` int DEFAULT NULL,
+  `uom` varchar(15) DEFAULT NULL,
+  `pcs_net` int DEFAULT NULL,
+  `trading_BOM` int DEFAULT NULL,
+  `fld_qty3` decimal(12,2) DEFAULT NULL,
+  `disc_amt` decimal(10,2) DEFAULT NULL,
+  `net_amt` decimal(15,2) DEFAULT NULL,
+  `vch_id` varchar(50) DEFAULT NULL,
+  `product_name` varchar(150) NOT NULL,
+  `product_group` varchar(100) DEFAULT NULL,
+  `product_code` varchar(15) DEFAULT NULL,
+  `author` varchar(150) DEFAULT NULL,
+  `isbn_code` varchar(100) DEFAULT NULL,
+  `disc_pc` decimal(10,2) DEFAULT NULL,
+  `publisher` varchar(200) DEFAULT NULL,
+  `supplier` varchar(200) DEFAULT NULL,
+  `fld_srate` decimal(10,2) DEFAULT NULL,
+  `fld_disc` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+ 
+) ENGINE=InnoDB AUTO_INCREMENT=101427 DEFAULT CHARSET=latin1
+----------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`invoice` 
+ADD COLUMN `chq_amt` DECIMAL(10,3) NULL AFTER `updated_date`;
+-------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`invoice` 
+ADD COLUMN `chq_issue_bank` VARCHAR(45) NULL AFTER `chq_date`;
+---------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`invoice` 
+ADD COLUMN `chq_no` VARCHAR(45) NULL AFTER `chq_issue_bank`;
+-------------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`invoice` 
+ADD COLUMN `qty` DECIMAL(10,3) NULL AFTER `chq_no`;
+-----------------------------------------------------------------
+ALTER TABLE `nchethana2018`.`salesreturns` 
+ADD COLUMN `created_by` VARCHAR(45) NULL ,
+ADD COLUMN `updated_by` VARCHAR(45) NULL ,
+ADD COLUMN `created_date` DATETIME NULL ,
+ADD COLUMN `updated_date` DATETIME NULL ;
+----------------------------------------------------
+ALTER TABLE `nchethana2020`.`purchasereturns_detail` 
+ADD CONSTRAINT `ss`
+  FOREIGN KEY (`base_id`)
+  REFERENCES `nchethana2020`.`purchasereturns` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  -------------------------------------------------------
+  
+ALTER TABLE `nchethana2020`.`stocktransfers_detail` 
+ADD COLUMN `isbn_code` VARCHAR(45) NULL AFTER `product_group`,
+ADD COLUMN `productcode` VARCHAR(45) NULL AFTER `isbn_code`;
+----------------------------------------------
+CREATE TABLE `stocktransfers_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `qty` int DEFAULT '1',
+  `rate` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(15,2) DEFAULT NULL,
+  `batch_no` varchar(20) DEFAULT NULL,
+  `exp_dt` varchar(40) DEFAULT NULL,
+  `fld_mfgdt` date DEFAULT NULL,
+  `pack` varchar(10) DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `batch_tracker` varchar(45) DEFAULT '0',
+  `fld_qty2` decimal(12,3) DEFAULT NULL,
+  `fld_length` int DEFAULT NULL,
+  `purity` decimal(7,2) DEFAULT '92.50',
+  `fld_qty1` int DEFAULT NULL,
+  `uom` varchar(15) DEFAULT NULL,
+  `pcs_net` int DEFAULT NULL,
+  `trading_BOM` int DEFAULT NULL,
+  `fld_qty3` decimal(12,2) DEFAULT NULL,
+  `disc_amt` decimal(10,2) DEFAULT NULL,
+  `net_amt` decimal(15,2) DEFAULT NULL,
+  `vch_id` varchar(50) DEFAULT NULL,
+  `product_name` varchar(150) NOT NULL,
+  `product_group` varchar(100) DEFAULT NULL,
+  `product_code` varchar(15) DEFAULT NULL,
+  `author` varchar(150) DEFAULT NULL,
+  `isbn_code` varchar(100) DEFAULT NULL,
+  `productcode` varchar(45) DEFAULT NULL,
+  `disc_pc` decimal(10,2) DEFAULT NULL,
+  `publisher` varchar(200) DEFAULT NULL,
+  `supplier` varchar(200) DEFAULT NULL,
+  `fld_srate` decimal(10,2) DEFAULT NULL,
+  `fld_disc` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `base_id` (`base_id`),
+  CONSTRAINT `stocktransfers_detail_1` FOREIGN KEY (`base_id`) REFERENCES `stocktransfers` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+--------------------------------------------------------------------------------------------
+CREATE TABLE `stock_receipts_det` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `qty` int DEFAULT '1',
+  `rate` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(15,2) DEFAULT NULL,
+  `batch_no` varchar(20) DEFAULT NULL,
+  `exp_dt` varchar(40) DEFAULT NULL,
+  `fld_mfgdt` date DEFAULT NULL,
+  `pack` varchar(10) DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `batch_tracker` varchar(45) DEFAULT '0',
+  `fld_qty2` decimal(12,3) DEFAULT NULL,
+  `fld_length` int DEFAULT NULL,
+  `purity` decimal(7,2) DEFAULT '92.50',
+  `fld_qty1` int DEFAULT NULL,
+  `uom` varchar(15) DEFAULT NULL,
+  `pcs_net` int DEFAULT NULL,
+  `trading_BOM` int DEFAULT NULL,
+  `fld_qty3` decimal(12,2) DEFAULT NULL,
+  `disc_amt` decimal(10,2) DEFAULT NULL,
+  `net_amt` decimal(15,2) DEFAULT NULL,
+  `vch_id` varchar(50) DEFAULT NULL,
+  `product_name` varchar(150) NOT NULL,
+  `product_group` varchar(100) DEFAULT NULL,
+  `product_code` varchar(15) DEFAULT NULL,
+  `author` varchar(150) DEFAULT NULL,
+  `isbn_code` varchar(100) DEFAULT NULL,
+  `productcode` varchar(45) DEFAULT NULL,
+  `disc_pc` decimal(10,2) DEFAULT NULL,
+  `publisher` varchar(200) DEFAULT NULL,
+  `supplier` varchar(200) DEFAULT NULL,
+  `fld_srate` decimal(10,2) DEFAULT NULL,
+  `fld_disc` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+-----------------------------------------------------------------------------
+CREATE TABLE `salesreturns_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `base_id` int DEFAULT NULL,
+  `qty` int DEFAULT '1',
+  `rate` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(15,2) DEFAULT NULL,
+  `batch_no` varchar(20) DEFAULT NULL,
+  `exp_dt` varchar(40) DEFAULT NULL,
+  `fld_mfgdt` date DEFAULT NULL,
+  `pack` varchar(10) DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `batch_tracker` varchar(45) DEFAULT '0',
+  `fld_qty2` decimal(12,3) DEFAULT NULL,
+  `fld_length` int DEFAULT NULL,
+  `purity` decimal(7,2) DEFAULT '92.50',
+  `fld_qty1` int DEFAULT NULL,
+  `uom` varchar(15) DEFAULT NULL,
+  `pcs_net` int DEFAULT NULL,
+  `trading_BOM` int DEFAULT NULL,
+  `fld_qty3` decimal(12,2) DEFAULT NULL,
+  `disc_amt` decimal(10,2) DEFAULT NULL,
+  `net_amt` decimal(15,2) DEFAULT NULL,
+  `vch_id` varchar(50) DEFAULT NULL,
+  `product_name` varchar(150) NOT NULL,
+  `product_group` varchar(100) DEFAULT NULL,
+  `product_code` varchar(15) DEFAULT NULL,
+  `author` varchar(150) DEFAULT NULL,
+  `isbn_code` varchar(100) DEFAULT NULL,
+  `disc_pc` decimal(10,2) DEFAULT NULL,
+  `publisher` varchar(200) DEFAULT NULL,
+  `supplier` varchar(200) DEFAULT NULL,
+  `fld_srate` decimal(10,2) DEFAULT NULL,
+  `fld_disc` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23541 DEFAULT CHARSET=latin1
+
+GRANT ALL PRIVILEGES ON telugu.screen to  'root'@'localhost';

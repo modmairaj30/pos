@@ -1,0 +1,12 @@
+2021-03-09 21:54:41,557 INFO com.webapp.apis.CustomerApplication [main] Starting CustomerApplication on mohammed with PID 23108 (D:\spring-boot-multi-module-master\application\target\classes started by mohammed.mirajuddin in D:\spring-boot-multi-module-master\application)
+2021-03-09 21:54:41,575 DEBUG com.webapp.apis.CustomerApplication [main] Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2021-03-09 21:54:41,577 INFO com.webapp.apis.CustomerApplication [main] No active profile set, falling back to default profiles: default
+2021-03-09 21:54:51,000 DEBUG org.springframework.web.context.ContextLoader [main] Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2021-03-09 21:54:51,001 INFO org.springframework.web.context.ContextLoader [main] Root WebApplicationContext: initialization completed in 9225 ms
+2021-03-09 21:54:51,205 DEBUG com.webapp.apis.config.JwtRequestFilter [main] Filter 'jwtRequestFilter' configured for use
+2021-03-09 21:55:00,205 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-03-09 21:55:00,624 DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [main] 5 mappings in 'requestMappingHandlerMapping'
+2021-03-09 21:55:00,799 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-03-09 21:55:00,836 DEBUG org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-03-09 21:55:01,982 INFO com.webapp.apis.CustomerApplication [main] Started CustomerApplication in 21.934 seconds (JVM running for 24.743)
+2021-03-09 21:55:01,985 INFO com.webapp.apis.CustomerApplication [main] CustomerApplication Started........

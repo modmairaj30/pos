@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stock_verification" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="a89f35cc-9017-4a13-8577-256e0735f037">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="dfromDate" class="java.lang.String"/>
+	<parameter name="dtoDate" class="java.lang.String"/>
+	<parameter name="fromDate" class="java.sql.Date"/>
+	<parameter name="toDate" class="java.sql.Date"/>
+	<parameter name="locationId" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT h.location_id,l.location_name,h.doc_dt,h.doc_no,sum(d.total_amt) as total FROM stock_verification h  INNER JOIN stock_verification_detail d on h.id=d.base_id INNER JOIN tbl_location l on h.location_id=l.id where h.location_id= $P{locationId} and h.doc_dt  between  $P{fromDate} and   $P{toDate}  group by h.doc_no ;]]>
+	</queryString>
+	<field name="location_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="location_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="location_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stock_verification"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="location_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="location_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="location_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_location"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="doc_dt" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="doc_dt"/>
+		<property name="com.jaspersoft.studio.field.label" value="doc_dt"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stock_verification"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="doc_no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="doc_no"/>
+		<property name="com.jaspersoft.studio.field.label" value="doc_no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stock_verification"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+	</field>
+	<variable name="total1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<group name="location_id">
+		<groupExpression><![CDATA[$F{location_id}]]></groupExpression>
+	</group>
+	<group name="location_name">
+		<groupExpression><![CDATA[$F{location_name}]]></groupExpression>
+	</group>
+	<group name="doc_dt">
+		<groupExpression><![CDATA[$F{doc_dt}]]></groupExpression>
+	</group>
+	<group name="doc_no">
+		<groupExpression><![CDATA[$F{doc_no}]]></groupExpression>
+	</group>
+	<group name="total">
+		<groupExpression><![CDATA[$F{total}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="30" uuid="23cd1e71-0959-4804-849a-436f9f64fe10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAVACHETHANA PUBLISHING / BOOK HOUSE
+Stock Verification Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="50" width="51" height="30" uuid="ccace7d4-d639-4978-904b-7bd00adad4c9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[From : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="50" width="31" height="30" uuid="fbb2dc3b-718c-4fdd-9fd5-e46acca8cd28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[To  : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="334" y="50" width="56" height="30" uuid="b11ece4b-b157-4cf7-9ed6-a91a2f10b266"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{dfromDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="50" width="100" height="30" uuid="24efd43d-6238-4876-86cb-6b53bcdc797a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dtoDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="50" width="101" height="30" uuid="39635925-3b7b-446a-9880-b12a1b70040b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdbd4c44-fa69-4e49-b3b0-3492926d46a6"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Branch Name    :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="141" y="50" width="138" height="30" uuid="57c114c5-76f2-4377-9472-dc5c9800db7e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdbd4c44-fa69-4e49-b3b0-3492926d46a6"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{location_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="90" height="30" uuid="c54a0505-23ca-43ee-a9ba-58dcfe1171e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5856a140-ca08-42fb-abc7-778fd48b8108"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doc Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="0" width="121" height="30" uuid="5119e676-7777-4165-bdc6-50b7578a5f16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6678977c-f94f-494f-aa05-3321a265bbf0"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doc No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="0" width="149" height="30" uuid="663e0de2-7e0a-401a-8722-dd3ccccd320f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b2219aba-c320-4d25-a71e-fb822c48e464"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="0" width="100" height="30" uuid="53187e5a-6dcf-41af-a130-248086560e55"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sl.No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="0" width="90" height="30" uuid="67f2c0ff-a2cc-44a7-b43a-bf167097950a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5856a140-ca08-42fb-abc7-778fd48b8108"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{doc_dt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="121" height="30" uuid="df125cbe-7d85-43eb-a2c2-3bf09acad5cc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6678977c-f94f-494f-aa05-3321a265bbf0"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{doc_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="0" width="149" height="30" uuid="2f97f4e8-c96b-4de8-b243-5ef78ffe5fb3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b2219aba-c320-4d25-a71e-fb822c48e464"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="100" height="30" uuid="32aa0228-21ce-4c5a-9c79-3eac6122d78e">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="351" y="0" width="149" height="30" uuid="760be449-5aa7-46ba-85f5-c720691757d9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="0" width="120" height="30" uuid="48b1c929-1057-43b4-b216-95b0b0774149">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="0" width="190" height="30" uuid="c46e87ef-1d9c-4f9c-8fb2-03649b75f785">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="24">
+			<textField>
+				<reportElement x="230" y="4" width="100" height="20" uuid="fb3a5680-45ab-499a-bfc0-e42ef579f32b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="30">
+			<textField>
+				<reportElement x="350" y="0" width="150" height="30" isRemoveLineWhenBlank="true" uuid="7d85515f-bd69-4935-8e51-fcacfcd4a319">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="0" width="120" height="30" uuid="2097aae6-f477-4a7f-b271-8fce6aeee3aa">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,18 @@
+-- disable safe update mode
+SET SQL_SAFE_UPDATES=0;
+-- execute update statement
+UPDATE table SET column='value';
+-- enable safe update mode
+SET SQL_SAFE_UPDATES=1;
+-------------------- to enable creating function and procedure
+SET GLOBAL log_bin_trust_function_creators = 1;
+SET GLOBAL interactive_timeout=60;
+SET GLOBAL connect_timeout=60;
+---to extends time;
+set global max_allowed_packet=67108864;
+set global max_allowed_packet=268435456;
+SET @@GLOBAL.wait_timeout=300;
+SET @@LOCAL.wait_timeout=300;  -- OR current session only
+wait_timeout = 28800
+# 8 hours
+interactive_timeout = 28800

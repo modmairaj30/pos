@@ -1,0 +1,15 @@
+public setDephosInterval() {
+        this.clearDephosInterval();
+        this.dephosInterval =  setInterval(() => {
+            this.getDephosDetail();
+        }, 30000);
+    }
+	------------------------------------------------------
+ public clearDephosInterval() {
+        if (this.dephosInterval) {
+            clearInterval(this.dephosInterval);
+            this.dephosInterval = null;
+        }
+        this.emitDephosValue.emit('');
+    }
+--------------------------------------------------	

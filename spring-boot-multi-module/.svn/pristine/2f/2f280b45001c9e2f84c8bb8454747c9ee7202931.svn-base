@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Moham
+Implementation-Vendor-Id: com.webapp.apis
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spring-boot-multi-module/service
+Created-By: Maven Integration for Eclipse
+

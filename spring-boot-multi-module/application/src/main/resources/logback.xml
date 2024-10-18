@@ -1,0 +1,46 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+	
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/var/log/webapp/webapp.log</file>		
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread]  %-5level %logger{36} - %msg%n </Pattern>  
+		</encoder>
+		
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/var/log/webapp/webapp.%d{yyyy-MM-dd}_%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+    <logger name="com.webapp.apis" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+	<logger name="org.springframework" level="OFF" />
+	<logger name="org.hibernate" level="OFF" />
+
+    <root level="error">
+   		 <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+    </root>
+    
+    <root level="info">
+    	<appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+    </root>
+    
+
+</configuration>
