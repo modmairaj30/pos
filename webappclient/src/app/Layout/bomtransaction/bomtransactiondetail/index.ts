@@ -1,0 +1,6 @@
+export * from './bomtransactiondetail.component';
+
+
+
+
+

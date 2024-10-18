@@ -1,0 +1,18 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Receipts</a>
+    <ng-template ngbNavContent>
+    <app-receiptsentry [(receipt)]="receipt" [(editmod)]="editmod"></app-receiptsentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">Receipts @History</a>
+    <ng-template ngbNavContent>
+    <app-receiptshistory (editReceiptEntry)="editReceiptEntry($event)"></app-receiptshistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

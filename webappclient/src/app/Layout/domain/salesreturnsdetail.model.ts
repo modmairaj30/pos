@@ -1,0 +1,46 @@
+export class SalesreturnsDetails {
+   
+	id?: number;
+    qty?: number;
+    cum_qty?: number;
+    rate?: number;
+    amount?: number;
+    batchNo?: string;
+    expDt?: string;
+    fldMfgdt?: Date;
+    pack?: string;
+    productId?: number;
+    batchTracker?: string;
+    fldQty2?: number;
+    fldLength?: number;
+    purity?: number;
+    fldQty1?: number;
+    uom?: string;
+    pcsNet?: number;
+    tradingBOM?: number;
+    fldQty3?: number;
+    discAmt?: number;
+    netAmt?: number;
+    vchId?: string;
+    productName?: string;
+    productGroup?: string;
+    productCode?: string;
+    author?: string;
+    isbnCode?: string;
+    discPc?: number;
+    publisher?: string;
+    supplier?: string;
+    fldSrate?: number;
+    fldDisc?: number;
+    sno?: number;
+    baseId?: number;
+    availQty?: number;
+    difference?: number;
+    description?: string;
+    fldBin?: number;
+    totalAmt?: number;
+    rackNo?: number;
+    dummyD?: number;
+    Dics?:number;
+  Disc: any;
+}

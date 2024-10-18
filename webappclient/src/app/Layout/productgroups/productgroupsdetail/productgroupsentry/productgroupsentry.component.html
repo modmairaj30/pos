@@ -1,0 +1,41 @@
+<div>
+  <form autocomplete="off" #formForm="ngForm" (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="formForm.form.valid && save()">
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <button pButton pRipple type="submit" label="Save(F2)" [disabled]="!formForm.form.valid" icon="pi pi-check"
+            iconPos="left"></button>
+          <button pButton pRipple type="reset" label="Reset(F5)" (click)="formForm.resetForm()" icon="pi pi-undo" iconPos="left"></button>
+        </div>
+      </p-toolbar>
+    </div>
+    <div class="panel-body">
+
+      <div class="row">
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">Type</label>
+          <div class="col-sm-8">
+            <input type="text" autofocusonloading class="form-control" AlphaNumeric='true' required name="groupName"
+              #prodName="ngModel" [(ngModel)]="productGroupMaster.groupName">
+
+          </div>
+        </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Code</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" AlphaNumericNoSpace='true' name="groupCode" #productCode="ngModel"
+                required style="text-transform: uppercase;" [(ngModel)]="productGroupMaster.groupCode">
+
+            </div>
+          </div>
+
+        </div>
+</div>
+
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

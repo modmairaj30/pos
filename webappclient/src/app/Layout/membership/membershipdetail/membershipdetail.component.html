@@ -1,0 +1,16 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Membership</a>
+    <ng-template ngbNavContent>
+      <app-membershipentry [(contraLocationmaster)]="contraLocationmaster"></app-membershipentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="clear();">Membership @History</a>
+    <ng-template ngbNavContent>
+      <app-membershiphistory (editContralocationentry)="editContralocationentry($event)"></app-membershiphistory>
+    </ng-template>
+  </li>
+
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

@@ -1,0 +1,22 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Sales returns</a>
+    <ng-template ngbNavContent>
+    <app-salesreturnsentry [(salesreturns)]="salesreturns" [(editmod)]="editmod"  (editEntry)="editEntry($event)"></app-salesreturnsentry>
+    </ng-template>
+  </li>
+  
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">Sales returns @History</a>
+    <ng-template ngbNavContent>
+    <app-salesreturnshistory (editSalesreturnsEntry)="editSalesreturnsEntry($event)" ></app-salesreturnshistory>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink (click)="setTab()">Sales Invoice @History</a>
+    <ng-template ngbNavContent>
+    <app-salesinvoicehistory1 (editSalesinvoiceEntry1)="editSalesinvoiceEntry1($event)" ></app-salesinvoicehistory1>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

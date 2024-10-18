@@ -1,0 +1,18 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Stock Verification</a>
+    <ng-template ngbNavContent>
+    <app-stockverificationentry [(stockVerification)]="stockVerification" [(editmod)]="editmod" (editEntry)="editEntry($event)"></app-stockverificationentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">Stock Verification @History</a>
+    <ng-template ngbNavContent>
+    <app-stockverificationhistory (editStockVerificationEntry)="editStockVerificationEntry($event)"></app-stockverificationhistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

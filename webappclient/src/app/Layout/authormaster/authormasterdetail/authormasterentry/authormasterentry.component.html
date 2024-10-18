@@ -1,0 +1,135 @@
+<div>
+  <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid" iconPos="left"></button>
+           <button pButton pRipple type="reset"  (click)="formForm.resetForm()" label="Reset(F5)" icon="pi pi-undo" iconPos="left"></button>
+         </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Name<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+               <input type="text" autocomplete="nope" autofocusonloading class="form-control" AlphaNumeric='true' name="name"
+              [(ngModel)]="itemmaster.name"  required>
+             
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Hindi Name</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control"  name="hindiName"
+                [(ngModel)]="itemmaster.hindiName">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">UOM</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control"  name="uom"
+                [(ngModel)]="itemmaster.uom"  >
+
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Description
+              </label>
+              <div class="col-sm-8">
+                 <input type="text" autocomplete="nope"  class="form-control"  name="description"
+                [(ngModel)]="itemmaster.description"  >
+               
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Category</label>
+              <div class="col-sm-8">
+                <input type="text" autocomplete="nope" class="form-control" AlphaNumeric='true' name="category"
+                  [(ngModel)]="itemmaster.category">
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Cost</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control"  name="cost" autocomplete="nope"
+                  [(ngModel)]="itemmaster.cost"  OnlyNumber='true'
+                  >
+                 
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Rate<span class="required-asterisk">*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control"  name="rate" autocomplete="nope"
+                  [(ngModel)]="itemmaster.rate" required  OnlyNumber='true'
+                 >
+                 
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Barcode<span class="required-asterisk">*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control"  name="barcode" autocomplete="nope"
+                  [(ngModel)]="itemmaster.barcode" required #barcode="ngModel" OnlyNumber='true'
+                 >
+                 
+              </div>
+            </div>
+            </div>
+<!--
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" AlphaNumeric='true' name="address"
+                [(ngModel)]="authormaster.address" required #address="ngModel">
+                <div *ngIf="address.errors && (address.dirty || address.touched)"
+                class="error-tooltip  top" style=" right: -164px;">
+                <div [hidden]="address.hasError().required">Address is required.</div>
+                <div [hidden]="address.hasError().pattern">No leading space is allowed.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Phone No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control"  name="phoneNumber"
+                [(ngModel)]="authormaster.phoneNumber" required #phoneNumber="ngModel" OnlyNumber='true'
+                minlength=10 maxlength="10">
+                <div *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)"
+                class="error-tooltip  top" style=" right: -164px;">
+                <div [hidden]="phoneNumber.hasError().required">phoneNo is required.</div>
+                <div [hidden]="phoneNumber.hasError().pattern">No leading space is allowed.</div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Email ID</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="emailId" [(ngModel)]="authormaster.email"  
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" [maxlength]="80">
+              
+            </div>
+          </div>
+        </div>
+
+      </div>-->
+    </div>
+
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

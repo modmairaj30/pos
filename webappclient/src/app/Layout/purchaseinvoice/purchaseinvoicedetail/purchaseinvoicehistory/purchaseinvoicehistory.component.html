@@ -1,0 +1,88 @@
+<div>
+    <div class="card">
+     <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines"
+         [columns]="selectedColumns" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt"
+         columnResizeMode="expand" #dt [value]="content" [rows]="100" [paginator]="true"
+         [globalFilterFields]="['prodName','prodCode']" [rowHover]="true" dataKey="id" selectionMode="single"
+         [(selection)]="selectedRowData" [(first)]="first"
+         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+         [showCurrentPageReport]="true" [scrollable]="true" scrollHeight="380px" >
+         <ng-template pTemplate="caption">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                    <p-button type="button" icon="pi pi-refresh" (click)="ngOnInit()" ></p-button>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" [style]="{minWidth: '150px'}" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Search..." />
+                               
+                    </span>
+                    
+                   
+                      
+                </div>
+                <div class="p-toolbar-group-right">
+                    <i class="pi pi-ellipsis-v"></i>
+                    <p-dropdown   [options]="cols" [(ngModel)]="searchCriteria.key" optionValue="field" optionLabel="header"></p-dropdown>
+                    <p-dropdown   [options]="searchs" [(ngModel)]="searchCriteria.operation" optionValue="field" optionLabel="header"></p-dropdown>
+                    <input [style]="{minWidth: '90px'}" pInputText  type="text"  [(ngModel)]="searchCriteria.value"   placeholder="Value..." />
+                    <button  class="p-button-worn p-mr-2" icon="pi pi-search" pButton pRipple
+                    label="" (click)="find()"></button>
+                    <i class="pi pi-ellipsis-v"></i>          
+                    <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+                    selectedItemsLabel="{0} columns selected" [style]="{minWidth: '150px'}"
+                    placeholder="Choose Columns"></p-multiSelect>
+                                
+                
+                    
+                </div>
+            </p-toolbar>
+            
+         </ng-template>
+         <ng-template pTemplate="header" let-columns>
+             <tr>
+                 <th style="width:5%">
+                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                 </th>
+                 <th *ngFor="let col of columns" [pSortableColumn]="col.field" [style]="col.width" >
+                     {{col.header}}<p-sortIcon field="col.field"></p-sortIcon>
+                 </th>
+                 <th style="width:10%"></th>
+             </tr>
+         </ng-template>
+         <ng-template pTemplate="body" let-product let-columns="columns" >
+             <tr [pSelectableRow]="product">
+                 <td style="width:5%" >
+                     <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                 </td>
+                 <td *ngFor="let col of columns" [style]="col.width">
+                    {{col.field === 'locationId' ? (locations | filter : product[col.field] : 'location_name'): col.field === 'docDt' ? (product[col.field] | datex: 'DD-MM-yy'): col.field === 'createdDate' ? (product[col.field] | datex: 'DD-MM-yy'): col.field === 'updatedDate' ? (product[col.field] | datex: 'DD-MM-yy') :  product[col.field] }}
+                    
+                 </td>
+               
+                 <td style="width:10%">
+                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info p-button-icon"
+                         (click)="editProduct(product)"></button>
+                     <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                 </td>
+             </tr>
+         </ng-template>
+
+         <ng-template pTemplate="paginatorleft">
+             
+             <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+             <button  class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple
+                    label="" (click)="pdf()"></button>
+                <button  pButton pRipple label="" icon="pi pi-file-excel"
+                    (click)="excel()" class="p-button-success p-mr-2"></button>
+                <button  pButton pRipple label="" icon="pi pi-print"
+                    class="p-button-info p-mr-2" (click)="pdf()"></button>
+         </ng-template>
+         <ng-template pTemplate="paginatorright">
+             <p-button type="button" icon="pi pi-chevron-right" (click)="next1()" [disabled]="!isLastPage()" styleClass="p-button-text"></p-button>
+         </ng-template>
+     </p-table>
+ </div>
+ <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: 'rgba(255,255,255,0.5)', backdropBorderRadius: '0px',
+ primaryColour: '#3a73b8', secondaryColour: '#3a73b8', tertiaryColour: '#3a73b8' }" ></ngx-loading>
+</div>

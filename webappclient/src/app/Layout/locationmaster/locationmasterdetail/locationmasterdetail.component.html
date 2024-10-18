@@ -1,0 +1,16 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Hub Master</a>
+    <ng-template ngbNavContent>
+      <app-locationmasterentry [(locationmaster)]="locationmaster"></app-locationmasterentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="clear();">Hub Master @History</a>
+    <ng-template ngbNavContent>
+      <app-locationmasterhistory (editLocationmasterentry)="editLocationmasterentry($event)"></app-locationmasterhistory>
+    </ng-template>
+  </li>
+
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

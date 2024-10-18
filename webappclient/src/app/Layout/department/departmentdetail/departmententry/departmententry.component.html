@@ -1,0 +1,59 @@
+
+<div  >
+  <form autocomplete="off"  #formForm="ngForm" (ngSubmit)="formForm.form.valid && save()" novalidate>
+
+    <div class="panel panel-primary">
+      <p-toolbar [style]="{width: '95%',padding:'2px'}">
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="row">
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="submit" label="Save"  icon="pi pi-check" [disabled]="!formForm.form.valid"
+                iconPos="left"></button>
+            </div>
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="reset" label="Reset"  (click)="formForm.resetForm()" icon="pi pi-undo"
+                iconPos="left"></button>
+            </div>
+          </div>
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Department</label>
+            <div class="col-sm-8">
+              <input type="text" autofocusonloading class="form-control" AlphaNumeric='true' name="departmentName" required #departmentName="ngModel" [(ngModel)]="departmentmaster.departmentName">
+              <div *ngIf="departmentName.errors && (departmentName.dirty || departmentName.touched)"
+              class="error-tooltip  top" style=" right: -164px;">
+              <div [hidden]="departmentName.hasError().required">Department Name is required.</div>
+              <div [hidden]="departmentName.hasError().pattern">No leading space is allowed.</div>
+            </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Department Code</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" AlphaNumeric='true' name="departmentCode" required #departmentCode="ngModel" [(ngModel)]="departmentmaster.departmentCode">
+              <div *ngIf="departmentCode.errors && (departmentCode.dirty || departmentCode.touched)"
+              class="error-tooltip  top" style=" right: -164px;">
+              <div [hidden]="departmentCode.hasError().required">department Code is required.</div>
+              <div [hidden]="departmentCode.hasError().pattern">No leading space is allowed.</div>
+            </div>
+            </div>
+          </div>
+          </div>
+          
+
+
+      </div>
+    </div>
+
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

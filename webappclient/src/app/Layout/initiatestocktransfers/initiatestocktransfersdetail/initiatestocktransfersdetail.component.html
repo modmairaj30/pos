@@ -1,0 +1,18 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Initiate Stock Transfers</a>
+    <ng-template ngbNavContent>
+    <app-initiatestocktransfersentry></app-initiatestocktransfersentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Initiate Stock Transfers @History</a>
+    <ng-template ngbNavContent>
+    <app-initiatestocktransfershistory></app-initiatestocktransfershistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

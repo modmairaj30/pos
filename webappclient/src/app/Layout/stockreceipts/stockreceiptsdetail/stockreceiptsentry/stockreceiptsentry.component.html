@@ -1,0 +1,287 @@
+<div>
+  <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+         <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid" iconPos="left"></button>
+         <button pButton pRipple type="reset" label="Reset(F5)" (click)="reset()" [disabled]="editmod" icon="pi pi-undo" iconPos="left"></button>
+          </div>
+      </p-toolbar>
+
+      <div class="panel-body">
+
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Location<span  class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <p-autoComplete [minLength]="1" #fe name="parent" required [(ngModel)]="stockReceipts.locationId"
+              [suggestions]="filteredEmpList1" (completeMethod)="filterEmpList1($event)" field="location_name"
+              [dropdown]="true">
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.location_name}}</div>
+                </div>
+
+              </ng-template>
+            </p-autoComplete>
+            
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Gross Amount</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="grossAmt" [(ngModel)]="stockReceipts.grossAmt"
+                OnlyNumber='true' >
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Receipt No</label>
+            <div class="col-sm-8">
+              <input type="text" disabled class="form-control" name="docNo" [(ngModel)]="stockReceipts.docNo"
+                OnlyNumber='true' >
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Discount Amt</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="discAmt" [(ngModel)]="stockReceipts.discAmt"
+                OnlyNumber='true' >
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Truck No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="truckNo" [(ngModel)]="stockReceipts.truckNo" >
+            </div>
+          </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Date</label>
+              <div class="col-sm-8">
+                  <p-calendar dateFormat="mm-dd-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                [showIcon]="true" name="docDt" [(ngModel)]="stockReceipts.docDt"></p-calendar>
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Net Amt</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="netAmt" [(ngModel)]="stockReceipts.netAmt">
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Driver Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name=".driverName" [(ngModel)]="stockReceipts.driverName" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">From Location<span  class="required-asterisk">*</span></label>
+              <div class="col-sm-8">
+                <p-autoComplete [minLength]="1" #fe name="fromLocation" [readonly]="editmod" [(ngModel)]="stockReceipts.fromLocation"
+               #localOS="ngModel" required [suggestions]="filteredList5" (completeMethod)="filterList5($event)" field="location_name"
+                [dropdown]="!editmod" (onSelect)="change3($event);"  [multiple]="false">
+                <ng-template let-branch pTemplate="item">
+                  <div class="branch-item">
+                    <div>{{branch.location_name}}</div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+              
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Ref ST No</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="fldDocno" [(ngModel)]="stockReceipts.fldDocno" >
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Comments</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="comment" [(ngModel)]="stockReceipts.comment" >
+              </div>
+            </div>
+            </div>
+            
+    </div>
+    <div class="card">
+      <p-table [value]="products2" styleClass="p-datatable-striped" #detailtable dataKey="sno" editMode="row" [scrollable]="true" scrollHeight="330px">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:2em">SNo.</th>
+              <th style="width:16em;text-align:center;">Titles<span  class="required-asterisk">*</span></th>
+              <th style="width:8em;text-align:center;">Author </th>
+              <th style="width:6em;text-align:center;">Code</th>
+              <th style="width:6em;text-align:center;">Qty<span  class="required-asterisk">*</span></th>
+              <th style="width:6em;text-align:center;">Rate</th>
+              <th style="width:6pem;text-align:center;">Amount</th>
+              <th style="width:6em;text-align:center;">Disc%</th>
+              <th style="width:6em;text-align:center;">DiscAmt</th>
+              <th style="width:6em;text-align:center;">NetAmount</th>
+              <th style="width:18em;text-align:center;">
+                <p-button label="New(F7)" icon="pi pi-plus" [hidden]="editmod" (click)="addvalue();"></p-button>
+              </th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="product">
+              <td style="width:2em">{{product.sno}}</td>
+
+              <td style="width:16em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <app-customsearch [content]="titleList2" [readonly]="editmod"  id="productId{{ri}}" [value]="product.productName"  field="prod_name" name="productId{{ri}}" [id]="product.productId" (onSelect)="selectedAutoCompletedValue($event,ri,product);"></app-customsearch>
+                    <!--p-autoComplete [minLength]="1" name="productId{{ri}}" (onSelect)="change1($event,ri,product);"
+                      [suggestions]="filteredEmpList2" (completeMethod)="filterEmpList2($event)"
+                      [(ngModel)]="product.productId" field="prod_name" delay="500" [dropdown]="true" [multiple]="false"
+                      [virtualScroll]="false">
+                      <ng-template let-branch pTemplate="item">
+                        <div class="branch-item">
+                          <div style="font-size:10px;">
+                            {{branch.prod_name}}--{{branch.product_code}}--{{branch.product_rate}}</div>
+                        </div>
+                      </ng-template> 
+                    </p-autoComplete-->
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.productName}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              
+              <td style="width:6em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" tabindex="-1" disabled name="author{{ri}}"  size="6" [(ngModel)]="product.author">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.author}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:8em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" tabindex="-1" disabled name="Code{{ri}}" size="6" [(ngModel)]="product.productCode">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.productCode}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:8em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" autocomplete="nope" name="qty{{ri}}"  required  style="text-align:right;" OnlyNumber="true" size="4" (change)="change2($event,ri,product)"
+                      [(ngModel)]="product.qty">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.qty}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:8em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" tabindex="-1" disabled name="rate{{ri}}"  size="4" [(ngModel)]="product.rate">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.rate}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:8em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" tabindex="-1" disabled name="amount{{ri}}"  size="4" [(ngModel)]="product.amount">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.amount}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:6em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text"  disabled name="Dics%{{ri}}" size="4" style="text-align:right;" OnlyNumber="true" [(ngModel)]="product.Dics"(change)="change2($event,ri,product)" >
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.Dics}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:6em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" disabled  name="Dics Amt%{{ri}}" size="4" [(ngModel)]="product.discAmt" >
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.discAmt}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="width:6em" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" disabled name="netAmt{{ri}}" size="4" [(ngModel)]="product.netAmt">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{product.netAmt}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+
+
+              <td style="text-align:center;">
+                <button *ngIf="!editing"   pButton  tabindex="-1" pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                  (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="editing"  pButton pRipple type="button"  tabindex="-1" pSaveEditableRow icon="pi pi-check"
+                  (click)="onRowEditSave(product)"
+                  class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                <button *ngIf="editing" pButton   tabindex="-1" pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                  (click)="onRowEditCancel(product, ri)"
+                  class="p-button-rounded p-button-text p-button-danger"></button>
+              </td>
+              <td style="text-align:center">
+                <button pButton pRipple type="button"  tabindex="-1" icon="pi pi-trash" (click)="onRowDelete(product, ri)"
+                  class="p-button-rounded p-button-danger p-button-text"></button>
+
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <tr>
+              <th style="width:3em">Total Items</th>
+                <th style="width:16em;text-align:center;">{{sno}}</th>
+                <th style="width:8em;text-align:center;">Total</th>
+              <th style="width:8em;text-align:center;">{{stockReceipts.totalQty}} </th>
+              <th style="width:8em;text-align:center;"></th>
+              <th style="width:8em;text-align:center;">{{stockReceipts.grossAmt}} </th>
+              <th style="width:8em;text-align:center;"></th>
+              <th style="width:8em;text-align:center;">{{stockReceipts.discamt}} </th>
+              <th style="width:8em;text-align:center;">{{stockReceipts.netAmt}}</th>
+              <th style="width:18em;text-align:center;">
+                
+              </th>
+              <th></th>
+            </tr>
+        </ng-template>
+
+        </p-table>
+      </div>
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

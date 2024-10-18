@@ -1,0 +1,163 @@
+  <button pButton pRipple  label="Payment(F6)" (click)="showBasicDialog2()" icon="pi pi-money-bill"  iconPos="left"></button>
+
+<p-dialog header="    " [(visible)]="displayBasic2" [style]="{width: '58vw'}" [baseZIndex]="10000">
+    <!--  
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Yes" class="p-button-text"></p-button>
+        <p-button icon="pi pi-times" (click)="displayBasic2=false" label="No"></p-button>
+    </ng-template>
+    -->
+    <div>
+        <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="formForm.form.valid && save()" novalidate>
+          <div class="panel panel-primary">
+            <p-toolbar [style]="{width: '95%',padding:'2px'}">
+              <div class="p-toolbar-group-left ">
+              </div>
+              <div class="p-toolbar-group-right">
+                <div class="row">
+                  <div class="col-sm-6 ">
+                    <button pButton pRipple type="submit" label="Conform(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid" iconPos="left"></button>
+                  </div>
+                 
+                </div>
+              </div>
+            </p-toolbar>
+      
+            <div class="panel-body" >
+      
+              
+              <div class="row">
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Payment Type<span  class="required-asterisk">*</span></label>
+                      <div class="col-sm-8">
+                        <p-autoComplete [minLength]="1" name="paymentType" 
+                        [suggestions]="filteredList5" (completeMethod)="filterList5($event)"  [(ngModel)]="salesinvoice.paymentType" field="payment_type"
+                        [dropdown]="true">
+                        <ng-template let-branch pTemplate="item">
+                          <div class="branch-item">
+                            <div>{{branch.payment_type}}</div>
+                          </div>
+                        </ng-template>
+                      </p-autoComplete>
+                      
+                      </div>
+                </div>
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Card</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="card" [(ngModel)]="salesinvoice.card"
+                      OnlyNumber='true' >
+                  </div>
+                </div>
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Chq No</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="fromWeight" [(ngModel)]="salesinvoice.chqNo"
+                      OnlyNumber='true' >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Amount</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="grossAmt" [(ngModel)]="salesinvoice.grossAmt"
+                      OnlyNumber='true' >
+                  </div>
+                </div>
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Card No</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="cardNo" [(ngModel)]="salesinvoice.cardNo"
+                      OnlyNumber='true' >
+                  </div>
+                </div>
+                <div class="col-sm-4 form-group row">
+                  <label class="col-sm-4 col-form-label">Chq Date</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="toWeight" [(ngModel)]="salesinvoice.chqDate">
+                  </div>
+                </div>
+                </div>
+                <div class="row">
+      
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Discount%</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="toWeight" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Expiry Date</label>
+                    <div class="col-sm-8">
+                        <p-calendar dateFormat="mm-dd-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                      [showIcon]="true" name="expiryDate" [(ngModel)]="salesinvoice.expiryDate"></p-calendar>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Cheque Amount</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="chqAmt" [(ngModel)]="salesinvoice.chqAmt" >
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Discount Amt</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="discamt" [(ngModel)]="salesinvoice.discamt">
+                    </div>
+                  </div>
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Credit Card Charges</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="fromWeight" 
+                        OnlyNumber='true' >
+                    </div>
+                  </div>
+                  <div class="col-sm-4 form-group row">
+                    <label class="col-sm-4 col-form-label">Chq Issue Bank</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="chqIssueBank" [(ngModel)]="salesinvoice.chqIssueBank"
+                         >
+                    </div>
+                  </div>
+                  
+                  </div>
+      
+                  <div class="row">
+                    <div class="col-sm-4 form-group row">
+                      <label class="col-sm-4 col-form-label">Amt(Post Discount)</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="toWeight" >
+                      </div>
+                    </div>
+                    <div class="col-sm-4 form-group row">
+                      <label class="col-sm-4 col-form-label">Total Amount</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="netAmt" [(ngModel)]="salesinvoice.netAmt"
+                          OnlyNumber='true' >
+                      </div>
+                    </div>
+                    <div class="col-sm-4 form-group row">
+                      <label class="col-sm-4 col-form-label">Branch</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="branch" [(ngModel)]="salesinvoice.branch"
+                           >
+                      </div>
+                    </div>
+                    
+                    </div>
+                
+          </div>
+          <div>
+      
+            
+          </div>
+          </div>
+        
+        </form>
+      
+      </div>
+</p-dialog>

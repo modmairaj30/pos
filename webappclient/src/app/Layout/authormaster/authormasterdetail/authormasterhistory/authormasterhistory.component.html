@@ -1,0 +1,103 @@
+<div>
+    <div class="card">
+         <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines"
+             (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt" columnResizeMode="expand" #dt
+             [value]="content" [rows]="100" [paginator]="true" [globalFilterFields]="['authorName']" [scrollable]="true"
+             [rowHover]="true" dataKey="id" selectionMode="" [(selection)]="selectedRowData"  scrollHeight="500px"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             [showCurrentPageReport]="true">
+ 
+ 
+             <ng-template pTemplate="caption">
+                 <p-toolbar>
+                     <div class="p-toolbar-group-left">
+                         <span class="p-input-icon-left">
+                             <i class="pi pi-search"></i>
+                             <input pInputText type="text"  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                 placeholder="Search..." />
+                         </span>
+                     </div>
+                     <div class="p-toolbar-group-right">
+                         <i class="pi pi-ellipsis-v"></i>
+                         <p-dropdown   [options]="cols" [(ngModel)]="searchCriteria.key" optionValue="field" optionLabel="header"></p-dropdown>
+                         <p-dropdown   [options]="searchs" [(ngModel)]="searchCriteria.operation" optionValue="field" optionLabel="header"></p-dropdown>
+                         <input [style]="{minWidth: '90px'}" pInputText  type="text"  [(ngModel)]="searchCriteria.value"   placeholder="Value..." />
+                         <button  class="p-button-worn p-mr-2" icon="pi pi-search" pButton pRipple
+                         label="" (click)="find()"></button>
+                         <i class="pi pi-ellipsis-v"></i>
+                             
+                             <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+                                 selectedItemsLabel="{0} columns selected" [style]="{minWidth: '150px'}"
+                                 placeholder="Choose Columns"></p-multiSelect>
+                     
+                         
+                     </div>
+                 </p-toolbar>      
+             </ng-template>
+             <ng-template pTemplate="header">
+                 <tr>
+                     <th style="width: 2rem">
+                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                     </th>
+                     <th pSortableColumn="name" pResizableColumn>Name <p-sortIcon field="name">
+                         </p-sortIcon>
+                     </th>
+                     <th pSortableColumn="hindiName" pResizableColumn>Hindi Name<p-sortIcon field="hindiName"></p-sortIcon>
+                     </th>
+                     <th pSortableColumn="uom" pResizableColumn>UOM<p-sortIcon field="uom">
+                         </p-sortIcon>
+                     </th>
+                     <th pSortableColumn="description" pResizableColumn>Description<p-sortIcon field="description"></p-sortIcon>
+                     </th>
+                     <th pSortableColumn="category" pResizableColumn>Category<p-sortIcon field="category"></p-sortIcon>
+                     </th>
+                     <th pSortableColumn="cost" pResizableColumn>Cost<p-sortIcon field="cost"></p-sortIcon>
+                     </th>
+                     <th pSortableColumn="rate" pResizableColumn>Rate<p-sortIcon field="rate"></p-sortIcon>
+                     </th>
+                     <th pSortableColumn="barcode" pResizableColumn>Barcode<p-sortIcon field="barcode"></p-sortIcon>
+                     </th>
+ 
+                     <!--th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th-->
+                     <th style="width: 3rem"></th>
+                 </tr>
+             </ng-template>
+             <ng-template pTemplate="body" let-product>
+                 <tr [pSelectableRow]="product">
+                     <td style="width: 2rem">
+                         <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                     </td>
+                     <td>{{product.name}}</td>
+                     <td>{{product.hindiName}}</td>
+                     <td>{{product.uom}}</td>
+                     <td>{{product.description}}</td>
+                     <td>{{product.category}}</td>
+                     <td>{{product.cost}}</td>
+                     <td>{{product.rate}}</td>
+                     <td>{{product.barcode}}</td>
+ 
+ 
+                     <!--td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                 <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td-->
+                     <td style="width: 3rem">
+                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info p-button-icon"
+                             (click)="editProduct(product)"></button>
+                         <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                     </td>
+                 </tr>
+             </ng-template>
+ 
+             <ng-template pTemplate="paginatorleft">
+                 
+                 <button  class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple
+                         label="" (click)="openPDF()"></button>
+                     <button  pButton pRipple label="" icon="pi pi-file-excel"
+                         (click)="exportExcel()" class="p-button-success p-mr-2"></button>
+                     <button  pButton pRipple label="" icon="pi pi-print"
+                         class="p-button-info p-mr-2" (click)="print()"></button>
+             </ng-template>
+         </p-table>
+     </div>
+ 
+     <!--qrcode id="qrcode" [qrdata]="'Your data'" [width]="256" [errorCorrectionLevel]="'M'" [elementType]="'img'"></qrcode-->
+ </div>

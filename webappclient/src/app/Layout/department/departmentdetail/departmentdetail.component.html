@@ -1,0 +1,16 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Department</a>
+    <ng-template ngbNavContent>
+      <app-departmententry [(departmentmaster)]="departmentmaster"></app-departmententry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="clear();">Department @History</a>
+    <ng-template ngbNavContent>
+      <app-departmenthistory (editDepartmenttry)="editDepartmenttry($event)"></app-departmenthistory>
+    </ng-template>
+  </li>
+
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

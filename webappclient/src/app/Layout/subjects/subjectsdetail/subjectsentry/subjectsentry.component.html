@@ -1,0 +1,57 @@
+<div>
+  <form autocomplete="off" #formForm="ngForm" (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+
+          <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid"
+            iconPos="left"></button>
+
+          <button pButton pRipple type="reset" label="Reset(F5)" (click)="formForm.resetForm()" icon="pi pi-undo"
+            iconPos="left"></button>
+        </div>
+
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Route Name<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" autofocusonloading autocomplete="nope" class="form-control" AlphaNumeric='true'
+                name="subjectName" required #subjectName="ngModel" [(ngModel)]="subjectmaster.subjectName">
+
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Route No<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" autocomplete="nope" AlphaNumericNoSpace='true' name="subjectCode"
+                required #subjectCode="ngModel" [(ngModel)]="subjectmaster.subjectCode">
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Route Discription<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" autocomplete="nope" AlphaNumericNoSpace='true' name="subjectCode"
+                required #subjectCode="ngModel" [(ngModel)]="subjectmaster.subjectCode">
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

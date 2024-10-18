@@ -1,0 +1,67 @@
+<div>
+    <div class="card">
+        <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines"
+            (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt" columnResizeMode="expand" #dt
+            [value]="content" [rows]="20" [paginator]="true" [globalFilterFields]="['branch','locationName','region']"
+            [rowHover]="true" dataKey="id" selectionMode="" [(selection)]="selectedRowData"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+            <ng-template pTemplate="caption">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                    <div class="p-toolbar-group-right">
+                     
+                    <button  class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple
+                        label="" (click)="openPDF()"></button>
+                    <button  pButton pRipple label="" icon="pi pi-file-excel"
+                        (click)="exportExcel()" class="p-button-success p-mr-2"></button>
+                    <button  pButton pRipple label="" icon="pi pi-print"
+                        class="p-button-info p-mr-2" (click)="print()"></button>
+                        
+                    </div>
+                </p-toolbar>       
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 2rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="branch" pResizableColumn>Designation<p-sortIcon field="designation">
+                        </p-sortIcon>
+                    </th>
+                    <th pSortableColumn="address" pResizableColumn>Designation Code <p-sortIcon field="designationCode">
+                        </p-sortIcon>
+                    </th>
+
+                    <!--th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th-->
+                    <th style="width: 3rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    </td>
+                    <td>{{product.designation}}</td>
+                    <td>{{product.designationCode}}</td>
+
+                    <!--td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td-->
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info p-button-icon"
+                            (click)="editProduct(product)"></button>
+                        <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+</div>

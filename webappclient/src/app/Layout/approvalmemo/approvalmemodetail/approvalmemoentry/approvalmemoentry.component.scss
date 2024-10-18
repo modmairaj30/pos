@@ -1,0 +1,52 @@
+::ng-deep .p-autocomplete-dd .p-autocomplete-input {
+    height: 30px;
+    font-size: 12px;
+} 
+
+::ng-deep .p-button {
+   height: 30px;
+}
+::ng-deep .col-form-label{
+    padding-top:0rem;
+    padding-bottom:0rem;
+}
+::ng-deep .p-inputtext {
+    height: 30px;
+    font-size: 12px;
+}
+::ng-deep .p-toolbar{
+padding: 0rem;
+}
+::ng-deep .p-datatable .p-datatable-thead > tr > th{
+    padding-top:0rem;
+    padding-bottom:0.25rem;
+    padding-left:0.25rem;
+    padding-right:0rem;
+ }
+ ::ng-deep .p-datatable .p-datatable-tbody > tr > td{
+    padding-top:0rem;
+    padding-bottom:0rem; 
+    padding-left:0.25rem;
+    padding-right:0.25rem; 
+ }
+.error-tooltip {background-color: #f2dede; background-image: -moz-linear-gradient(top, #444, #444); position: relative; color: #a94442; padding: 3px; border-radius: 3px; box-shadow: 0px 0px 3px #ccc; border: 1px solid #ebccd1; position: absolute; top: 0;    right: -100px; font-size:9px;   
+    max-width: 83%;
+    z-index: 1;
+    white-space: normal;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    width: 100%;
+    line-height:9px; 
+}
+
+.panel-body {
+    padding-top: 20px;
+}
+
+.p-toolbar {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    /* padding: 1rem; */
+    border-radius: 3px;
+}
+

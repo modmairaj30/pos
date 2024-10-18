@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "97a2d661-021c-4860-b8c6-fb26e647af30",
+		"name": "RemoteCommunity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6208968",
+		"_collection_link": "https://kamps2.postman.co/workspace/Kamps-Workspace~6cf36258-1b05-4a13-b6b9-b635fd8c8229/collection/6208968-97a2d661-021c-4860-b8c6-fb26e647af30?action=share&source=collection_link&creator=6208968"
+	},
+	"item": [
+		{
+			"name": "saveUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"pushpa\",\r\n    \"surname\": \"kumar21\",\r\n    \"sonOfOrDaughterOf\": \"Magna\",\r\n    \"subcast\": \"sub\",\r\n    \"gotra\": \"got\",\r\n    \"bloodGp\": \"B\",\r\n    \"dateOfBirth\": \"10-10-2003\",\r\n    \"age\": \"20\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"pushpa@gmail.com\",\r\n    \"newPassword\": \"abc\",\r\n    \"confirmNewPassword\": \"9999999\",\r\n    \"assemblyConstituency\": \"lbnagar\",\r\n    \"phoneNo1\": \"9999999\",\r\n    \"phoneNo2\": \"9999999\",\r\n    \"whatsappNo\": \"9999999\",\r\n    \"permanentAddressList\": {\r\n        \"houseNoNamePlotNo\": \"4-10-67\",\r\n        \"streetLandmark\": \"street5\",\r\n        \"village\": \"village\",\r\n        \"mandalArea\": \"area\",\r\n        \"district\": \"lbnagar\",\r\n        \"state\": \"telangana\",\r\n        \"phoneNo\": \"9999999\"\r\n    },\r\n    \"presentAddressList\": {\r\n        \"houseNoNamePlotNo\": \"4-10-56\",\r\n        \"streetLandmark\": \"street5\",\r\n        \"village\": \"village\",\r\n        \"mandalArea\": \"area\",\r\n        \"district\": \"xxx\",\r\n        \"state\": \"telangana\",\r\n        \"phoneNo\": \"9999999\"\r\n    },\r\n    \"professionalDetailsList\": {\r\n        \"jobBusiness\": \"job5\",\r\n        \"designation\": \"manager\",\r\n        \"companyName\": \"hollow\",\r\n        \"houseNoNamePlotNo\": \"8-10-89\",\r\n        \"streetLandmark\": \"uuuuu\",\r\n        \"village\": \"vvv\",\r\n        \"mandalArea\": \"mandal\",\r\n        \"district\": \"uppal\",\r\n        \"state\": \"telangana\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.111.147.252:9090/community/api/auth/saveUser",
+					"protocol": "http",
+					"host": [
+						"3",
+						"111",
+						"147",
+						"252"
+					],
+					"port": "9090",
+					"path": [
+						"community",
+						"api",
+						"auth",
+						"saveUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"santosh@gmail.com\",\"password\":\"dfdfdf\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.111.147.252:9090/community/api/auth/signin",
+					"protocol": "http",
+					"host": [
+						"3",
+						"111",
+						"147",
+						"252"
+					],
+					"port": "9090",
+					"path": [
+						"community",
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

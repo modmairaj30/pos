@@ -1,0 +1,17 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Bom</a>
+    <ng-template ngbNavContent>
+    <app-bomentry [(bom)]="bom" [(editmod)]="editmod"  (editEntry)="editEntry($event)"></app-bomentry>
+    </ng-template>
+  </li>
+  
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">Bom @History</a>
+    <ng-template ngbNavContent>
+    <app-bomhistory (editBomEntry)="editBomEntry($event)" ></app-bomhistory>
+    </ng-template>
+  </li>
+ 
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

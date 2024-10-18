@@ -1,0 +1,47 @@
+<div>
+  <form autocomplete="off" #formForm="ngForm" (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid"
+            iconPos="left"></button>
+
+          <button pButton pRipple type="reset" label="Reset(F5)"  (click)="formForm.resetForm()" icon="pi pi-undo" iconPos="left"></button>
+
+
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Vehicle Name<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control" autofocusonloading AlphaNumeric='true'
+                required name="Categorytype" #categorytype="ngModel" [(ngModel)]="categorymaster.Categorytype"
+                #Categorytype="ngModel">
+
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Vehicle No<span class="required-asterisk">*</span>
+            </label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" autocomplete="nope" AlphaNumericNoSpace='true' name="Categorycode"
+                required #categorytype="ngModel" [(ngModel)]="categorymaster.Categorycode" #Categorycode="ngModel">
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+
+</div>

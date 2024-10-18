@@ -1,0 +1,6 @@
+export * from './bomdetail.component';
+
+
+
+
+

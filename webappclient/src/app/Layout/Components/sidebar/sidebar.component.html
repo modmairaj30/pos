@@ -1,0 +1,649 @@
+<div
+  [class]="'app-sidebar sidebar-shadow ' + (config$ | async).sidebarTheme"
+  (mouseover)="sidebarHover()"
+  (mouseout)="sidebarHover()"
+>
+  <div class="app-header__logo">
+    <div class="logo-src"></div>
+    <div class="header__pane ml-auto">
+      <button
+        type="button"
+        class="hamburger close-sidebar-btn hamburger--elastic"
+        [ngClass]="{ 'is-active': globals.toggleSidebar }"
+        (click)="toggleSidebar()"
+      >
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="app-sidebar-content">
+    <div class="app-sidebar-scroll">
+      <perfect-scrollbar [autoPropagation]="true">
+        <div class="v-sidebar-menu vsm-default">
+          <div class="vsm-list">
+            <ngb-accordion
+              [destroyOnHide]="false"
+              [closeOthers]="true"
+              [activeIds]="extraParameter"
+            >
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header">Masters</div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="masterMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-server"></i>
+                    <span class="vsm-title">Masters</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <!--<div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.LocationMaster.menu"
+                      >
+                        <a
+                          routerLink="masters/locationmaster"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Hub Master</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.TitleMaster.menu"
+                      >
+                        <a
+                          routerLink="masters/titlemaster"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Product Master</span></a
+                        >
+                      </div>-->
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.PartyMaster.menu"
+                      >
+                        <a
+                          routerLink="masters/partymasters"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Party Master</span></a
+                        >
+                      </div>
+                      <!--<div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.ProductGroups.menu"
+                      >
+                        <a
+                          routerLink="masters/productgroups"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Product Type Master</span></a
+                        >
+                      </div>-->
+                      <!-- <div class="vsm-item" *ngIf="this.userRoles.userRoles.EmployeeMaster.menu"><a routerLink="masters/employeemaster" routerLinkActive="active-item"
+                        [routerLinkActiveOptions]="{exact: true}" class="vsm-link"><span
+                        class="vsm-title">Employee Master</span></a>
+                        </div>
+                      <div class="vsm-item" *ngIf="this.userRoles.userRoles.ModeOfPayment.menu" ><a routerLink="masters/modeofpayment" routerLinkActive="active-item"
+                        [routerLinkActiveOptions]="{exact: true}" class="vsm-link"><span
+                        class="vsm-title">Mode Of Payment</span></a>
+                      </div>-->
+                      <!--<div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Subjects.menu"
+                        
+                      >
+                        <a
+                          routerLink="masters/subjects"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Route Master</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Subjects.menu"
+                      ></div>-->
+
+                      <!-- <div class="vsm-item" *ngIf="this.userRoles.userRoles.Department.menu"><a routerLink="masters/department" routerLinkActive="active-item"
+                    [routerLinkActiveOptions]="{exact: true}" class="vsm-link"><span
+                    class="vsm-title">Department</span></a>
+                    </div>-->
+                      <!--<div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Category.menu"
+                      
+                      >
+                        <a
+                          routerLink="masters/category"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Vehicle Master</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Contralocation.menu"
+                        
+                      >
+                        <a
+                          routerLink="masters/contralocation"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Contralocation</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Membership.menu"
+                        
+                      >
+                        <a
+                          routerLink="masters/membership"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Membership</span></a
+                        >
+                      </div>-->
+                      <!-- <div class="vsm-item" *ngIf="this.userRoles.userRoles.Designation.menu"><a routerLink="masters/designation" routerLinkActive="active-item"
+                      [routerLinkActiveOptions]="{exact: true}" class="vsm-link"><span
+                      class="vsm-title">Designation</span></a>
+                      </div> -->
+                      <!--  <div class="vsm-item" *ngIf="this.userRoles.userRoles.Years.menu"><a routerLink=""
+                          routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}"
+                          class="vsm-link"><span class="vsm-title">Years</span></a>
+                      </div>-->
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.AuthorMaster.menu"
+                        
+                      >
+                        <a
+                          routerLink="masters/authormaster"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Item Master</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.UserMasters.menu"
+                      >
+                        <a
+                          routerLink="masters/usermaster"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">User Masters</span></a
+                        >
+                      </div>
+
+                      <div 
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.UserMasters.menu"
+                      >
+                        <a
+                          routerLink="masters/bom"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">BOM</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header">Transactions</div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="purchaseMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">Purchases</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.PurchaseInvoice.menu"
+                      >
+                        <a
+                          routerLink="purchase/purchaseinvoice"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Purchase Invoice</span></a
+                        >
+                      </div>
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.PurchaseReturns.menu"
+                      >
+                        <a
+                          routerLink="purchase/purchasereturns"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Purchase Returns</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+
+              <!--ngb-panel id="tablesMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-safe"></i>
+                    <span class="vsm-title">Tables</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div class="vsm-item">
+                        <a routerLinkActive="active-item" routerLink="/tables/bootstrap" class="vsm-link"> <span
+                          class="vsm-title">Bootstrap 4 Tables</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel-->
+              <ngb-panel id="salesMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">Sales</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.SalesInvoice.menu"
+                      >
+                        <a
+                          routerLink="sales/salesinvoice"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Sales Invoice</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.SalesReturns.menu"
+                      >
+                        <a
+                          routerLink="sales/salesreturns"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Sales Returns</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.ApprovalMemo.menu"
+                      >
+                        <a
+                          routerLink="sales/approvalmemo"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Approval Memo</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockAdjustment.menu"
+                        [hidden]="true"
+                      >
+                        <a
+                          routerLink="sales/stockadjustment"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Stock Adjustment</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="paymentsreceiptsMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">Payments & Receipts</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Payments.menu"
+                      >
+                        <a
+                          routerLink="paymentsreceipts/payments"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Payments</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Receipts.menu"
+                      >
+                        <a
+                          routerLink="paymentsreceipts/receipts"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Receipts</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="stocksMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">Stocks</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="
+                          this.userRoles.userRoles.StockTransferRequisition.menu
+                        "
+                      >
+                        <a
+                          routerLink="stocks/stocktransferrequisition"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title"
+                            >In Ward</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockTransfers.menu"
+                      >
+                        <a
+                          routerLink="stocks/stocktransfer"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Stock Transfers</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockEntry.menu"
+                      >
+                        <a
+                          routerLink="stocks/stockentry"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title"
+                            >Stock Entry(Opening)</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockReceipts.menu"
+                      >
+                        <a
+                          routerLink="stocks/stockreceipts"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Stock Receipts</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="
+                          this.userRoles.userRoles.InitiateStockTransfers.menu
+                        "
+                      >
+                        <a
+                          routerLink="stocks/stocktransfer"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title"
+                            >Initiate Stock Transfers</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Viewincomingst.menu"
+                      >
+                        <a
+                          routerLink=""
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">View-incomingst</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="productionMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">POS</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <!--<div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Production.menu"
+                      >
+                        <a
+                          routerLink="production/production"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Production</span></a
+                        >
+                      </div>-->
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.Production.menu"
+                      >
+                        <a
+                          routerLink="production/bomtransaction"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">POS/Billing</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="stockverificationMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-diamond"></i>
+                    <span class="vsm-title">Stock Verification</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockVerification.menu"
+                      >
+                        <a
+                          routerLink="stockverification/stockverification"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Stock Verification</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel>
+                <ng-template ngbPanelHeader>
+                  <div class="vsm-header">Reports</div>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="reportsMenu">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-file"></i>
+                    <span class="vsm-title">Stock Reports</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockVerification.menu"
+                      >
+                        <a
+                          routerLink="stockverificationreports/stockverificationreports"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title"
+                            >Stock Verification Report</span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockVerification.menu"
+                      >
+                        <a
+                          routerLink="generalreports/generalreports"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">General Report</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+              <!-----reportlist---->
+              <ngb-panel id="reportsList">
+                <ng-template ngbPanelHeader>
+                  <button ngbPanelToggle class="vsm-link">
+                    <i class="vsm-icon pe-7s-file"></i>
+                    <span class="vsm-title">Report list</span>
+                    <i class="vsm-arrow"></i>
+                  </button>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="vsm-dropdown">
+                    <div class="vsm-list">
+                      <div
+                        class="vsm-item"
+                        *ngIf="this.userRoles.userRoles.StockVerification.menu"
+                      >
+                        <a
+                          routerLink="reportlist/reportlist"
+                          routerLinkActive="active-item"
+                          [routerLinkActiveOptions]="{ exact: true }"
+                          class="vsm-link"
+                          ><span class="vsm-title">Report List</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+        </div>
+      </perfect-scrollbar>
+    </div>
+  </div>
+</div>

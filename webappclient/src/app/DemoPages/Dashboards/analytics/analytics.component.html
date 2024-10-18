@@ -1,0 +1,25 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      
+      <a ngbNavLink><i class="vsm-icon pe-7s-monitor"></i> Dashboard One</a>
+      <ng-template ngbNavContent>
+        
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink><i class="vsm-icon pe-7s-monitor"></i> Dashboard Two</a>
+      <ng-template ngbNavContent>
+        <p></p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink><i class="vsm-icon pe-7s-config"></i> Settings</a>
+      <ng-template ngbNavContent>
+        <app-userentry [(usermaster)]="usermaster"></app-userentry>
+      </ng-template>
+    </li>
+  </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  
+  <pre>Active: {{ active }}</pre>

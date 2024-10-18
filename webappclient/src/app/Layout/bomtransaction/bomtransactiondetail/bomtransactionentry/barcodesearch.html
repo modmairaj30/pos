@@ -1,0 +1,82 @@
+<div class="row">
+    <p-button (click)="showBasicDialog2()" [hidden]="readonly" icon="pi pi-search"></p-button>
+    <input pInputText type="text" autofocusonloading placeholder="Enter Barcode" (change)="onChangeSelect()" [(ngModel)]="value" #barcode [readonly]="readonly" (keyup.space)="showBasicDialog2()" size="25">
+  
+</div>
+
+
+<p-dialog header="    " [(visible)]="displayBasic2" [style]="{width: '56vw'}" [baseZIndex]="10000">
+    <!--  
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Yes" class="p-button-text"></p-button>
+        <p-button icon="pi pi-times" (click)="displayBasic2=false" label="No"></p-button>
+    </ng-template>
+    -->
+    <div>
+
+        <p-table tableNavigation    (highlightProduct)="selectedRowData = $event"     [visibleItems]="visibleProducts" [scrollable]="true" scrollHeight="250px"  styleClass="p-datatable-striped p-datatable-gridlines"
+            id="dt"  #dt [value]="filteredEmpList2" [rows]="1000" [paginator]="true" [autoLayout]="true"
+            [globalFilterFields]="['name','rate','barcode']" [rowHover]="true" dataKey="id"
+            selectionMode="single" [(selection)]="selectedRowData" (onRowSelect)="onRowSelect($event)"
+            (onRowUnselect)="onRowUnselect($event)" columnResizeMode="expand"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            (onFilter)="onFilter($event, dt)" [showCurrentPageReport]="true">
+
+
+            <ng-template pTemplate="caption">
+
+                <div class="p-d-flex">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" autofocus 
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                    </span>
+
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:20em" pSortableColumn="name" pResizableColumn>Product Name<p-sortIcon field="name">
+                        </p-sortIcon>
+                    </th>
+                    <th style="width:5em" pSortableColumn="cum_qty" pResizableColumn>Stock<p-sortIcon field="cum_qty">
+                    </p-sortIcon>
+                    <th style="width:5em" pSortableColumn="rate" pResizableColumn>Rate<p-sortIcon field="rate">
+                        </p-sortIcon>
+                    <!--<th style="width:10em" pSortableColumn="author" pResizableColumn>Author<p-sortIcon field="author"></p-sortIcon>
+                    <th style="width:15em" pSortableColumn="publisher_name" pResizableColumn>Publisher<p-sortIcon field="publisher_name">
+                        </p-sortIcon>-->
+                    <th style="width:5em" pSortableColumn="barcode" pResizableColumn>BarCode<p-sortIcon field="barcode">
+                        </p-sortIcon>
+
+
+                    </th>
+                    <th style="width:5em" pSortableColumn="id" pResizableColumn>Id<p-sortIcon field="id">
+                    </p-sortIcon>
+
+
+                </th>
+
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input *ngSwitchCase="name" pInputText type="text"
+                        (input)="dt.filter($event.target.value, col.field, 'contains')" />
+                    </th>
+                  </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr [pSelectableRow]="product">
+                    <td style="width:20em">{{product.name}}</td>
+                    <td style="width:5em">{{product.cum_qty}}</td>
+                    <td style="width:5em">{{product.rate | number:'1.2-2' }}</td>
+                    <!--<td style="width:10em">{{product.author}}</td>
+                    <td style="width:15em">{{product.publisher_name}}</td>-->
+                    <td style="width:5em">{{product.barcode}}</td>
+                    <td style="width:5em">{{product.id}}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+</p-dialog>

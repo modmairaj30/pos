@@ -1,0 +1,13 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+   <li [ngbNavItem]="1">
+    <a ngbNavLink >Stock Verification Reports
+    </a>
+    <ng-template ngbNavContent>
+    <app-stockverificationhistoryreports  ></app-stockverificationhistoryreports>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

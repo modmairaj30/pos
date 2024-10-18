@@ -1,0 +1,6 @@
+export * from './designationdetail.component';
+
+
+
+
+

@@ -1,0 +1,6 @@
+export * from './purchaseinvoicedetail.component';
+
+
+
+
+

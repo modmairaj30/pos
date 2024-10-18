@@ -1,0 +1,18 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Approval Memo</a>
+    <ng-template ngbNavContent>
+    <app-approvalmemoentry></app-approvalmemoentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Approval Memo @History</a>
+    <ng-template ngbNavContent>
+    <app-approvalmemohistory></app-approvalmemohistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

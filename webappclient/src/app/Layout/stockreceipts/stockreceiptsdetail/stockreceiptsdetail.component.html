@@ -1,0 +1,24 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Stock Receipts</a>
+    <ng-template ngbNavContent>
+    <app-stockreceiptsentry [(stockReceipts)]="stockReceipts" [(editmod)]="editmod" (editEntry)="editEntry($event)"></app-stockreceiptsentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink  (click)="setTab()">Stock Receipts @History</a>
+    <ng-template ngbNavContent>
+    <app-stockreceiptshistory (editStockReceipts)="editStockReceipts($event)"></app-stockreceiptshistory>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink (click)="setTab()">Stock Transfer @History</a>
+    <ng-template ngbNavContent>
+    <app-stocktransferhistory1 (editStockTransferEntry1)="editStockTransferEntry1($event)" ></app-stocktransferhistory1>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

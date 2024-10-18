@@ -1,0 +1,278 @@
+<div>
+  <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+         <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check"
+                [disabled]="!formForm.form.valid" iconPos="left"></button>
+           <button pButton pRipple type="reset" label="Reset(F5)"  
+                icon="pi pi-undo" iconPos="left"></button>
+          </div>
+      </p-toolbar>
+
+      <div class="panel-body">
+
+        
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">From Location</label>
+            <div class="col-sm-8">
+              <p-autoComplete autofocus [minLength]="1" name="party_name" 
+              [suggestions]="filteredEmpList1" (completeMethod)="filterEmpList1($event)" field="location_name"
+              [dropdown]="true">
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.location_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Gross Amt</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight"                 OnlyNumber='true'  maxlength="15">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Employee</label>
+            <div class="col-sm-8">
+              <p-autoComplete [minLength]="1" name="party_name" 
+              [suggestions]="filteredParentlocationList3" (completeMethod)="filterParentlocationList3($event)" field="first_name"
+              [dropdown]="true">
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.first_name}}{{branch.last_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Trf No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight" 
+                OnlyNumber='true' maxlength="15">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Disc Amt</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight" 
+                OnlyNumber='true'  maxlength="15">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Truck No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="toWeight" >
+            </div>
+          </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Trnf Date</label>
+              <div class="col-sm-8">
+                  <p-calendar dateFormat="mm-dd-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                [showIcon]="true" name="fromWeight" ></p-calendar>
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Net Amt</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Driver Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">To Location</label>
+              <div class="col-sm-8">
+                <p-autoComplete [minLength]="1" name="party_name" 
+                [suggestions]="filteredEmpList2" (completeMethod)="filterEmpList2($event)" field="location_name"
+                [dropdown]="true">
+                <ng-template let-branch pTemplate="item">
+                  <div class="branch-item">
+                    <div>{{branch.location_name}}</div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+              
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Ref ST No</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Comments</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+            </div>
+            
+    </div>
+    <div>
+
+      <p-table #detailtable dataKey="sno" editMode="row">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:3em">SNo.</th>
+            <th>Title</th>
+            <th>Product Code</th>
+            <th>Author</th>
+            <th>Qty</th>
+            <th>ActualPrice</th>
+            <th>GrossAmount</th>
+            <th>Disc%</th>
+            <th>Disc Amt</th>
+            <th>Net Amt</th>
+            <th style="width:8em">
+              <p-button label="New" icon="pi pi-plus" (click)="addvalue();"></p-button>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+          <tr [pEditableRow]="product">
+            <td>{{product.sno}}</td>
+
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <p-autoComplete [minLength]="1" name="productId{{ri}}" (onSelect)="change1($event,ri,product);"
+                    [suggestions]="filteredList4" (completeMethod)="filterList4($event)"
+                    [(ngModel)]="product.productId" field="prod_name" delay="500" [dropdown]="true" [multiple]="false"
+                    [virtualScroll]="false">
+                    <ng-template let-branch pTemplate="item">
+                      <div class="branch-item">
+                        <div style="font-size:10px;">
+                          {{branch.prod_name}}--{{branch.product_code}}--{{branch.product_rate}}</div>
+                      </div>
+                    </ng-template>
+                  </p-autoComplete>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.productId.prod_name}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="rate" [(ngModel)]="product.rate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.rate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="rate" [(ngModel)]="product.rate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.rate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="rate" [(ngModel)]="product.rate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.rate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="rate" [(ngModel)]="product.rate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.rate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="rate" [(ngModel)]="product.rate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.rate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="addrate" [(ngModel)]="product.addrate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.addrate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="addrate" [(ngModel)]="product.addrate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.addrate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" name="addrate" [(ngModel)]="product.addrate">
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{product.addrate}}
+                </ng-template>
+              </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+              <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                (click)="onRowEditInit(product, ri)" class="p-button-rounded p-button-text"></button>
+              <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                (click)="onRowEditSave(product)"
+                class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+              <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+            </td>
+            <td style="text-align:center">
+              <button pButton pRipple type="button" icon="pi pi-trash" (click)="onRowDelete(product, ri)"
+                class="p-button-rounded p-button-danger p-button-text"></button>
+
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    </div>
+  </form>
+
+</div>

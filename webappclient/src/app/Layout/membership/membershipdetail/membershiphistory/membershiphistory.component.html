@@ -1,0 +1,95 @@
+<div>
+    
+
+    <div class="card">
+   
+        <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt" columnResizeMode="expand" #dt
+            [value]="content" [rows]="100" [paginator]="true"
+            [globalFilterFields]="['branch','locationName','region']" 
+            [rowHover]="true" dataKey="id"  scrollHeight="380px"
+            selectionMode=""  [(selection)]="selectedRowData"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true" [scrollable]="true">
+            <ng-template pTemplate="caption">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                    <div class="p-toolbar-group-right">
+                     
+                    <button  class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple
+                        label="" (click)="openPDF()"></button>
+                    <button  pButton pRipple label="" icon="pi pi-file-excel"
+                        (click)="exportExcel()" class="p-button-success p-mr-2"></button>
+                    <button  pButton pRipple label="" icon="pi pi-print"
+                        class="p-button-info p-mr-2" (click)="print()"></button>
+                        
+                    </div>
+                </p-toolbar>     
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr [pSelectableRow]="product">
+                    <th style="width: 2rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="ContactName" pResizableColumn>Contact Name <p-sortIcon field="ContactName"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="PanNo" pResizableColumn>Pan No <p-sortIcon field="PanNo"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="membershipNo" pResizableColumn>Membership No <p-sortIcon field="membershipNo">
+                        </p-sortIcon>
+                    </th>
+                    <th pSortableColumn="Address" pResizableColumn>Address <p-sortIcon field="Address"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="amountPaid" pResizableColumn>Amount Paid <p-sortIcon field="amountPaid"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="phoneNo" pResizableColumn>Phone No <p-sortIcon field="phoneNo"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="validityDate" pResizableColumn>Validity Date <p-sortIcon field="validityDate"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="emailId" pResizableColumn>Email Id<p-sortIcon field="emailId"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="Years" pResizableColumn>Years<p-sortIcon field="Years"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="expiryDate" pResizableColumn>expiryDate<p-sortIcon field="expiryDate"></p-sortIcon>
+                    </th>
+                    <!--th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th-->
+                    <th style="width: 3rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td style="width: 2rem">
+                        <p-tableCheckbox [value]="product" ></p-tableCheckbox>   
+                    </td>
+                    <td>{{product.ContactName}}</td>
+                    <td>{{product.PanNo}}</td>
+                    <td>{{product.membershipNo}}</td>
+                    <td>{{product.Address}}</td>
+                    <td>{{product.amountPaid}}</td>
+                    <td>{{product.phoneNo}}</td>
+                    <td>{{product.validityDate}}</td>
+                    <td>{{product.emailId}}</td>
+                    <td>{{product.Years}}</td>
+                    <td>{{product.expiryDate}}</td>
+
+                    <!--td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td-->
+                    <td style="width: 3rem">
+                        <button pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-info p-button-icon"
+                            (click)="editProduct(product)"></button>
+                        <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                    </td>
+                </tr>
+            </ng-template>
+            
+        </p-table>
+    </div>
+    
+  
+</div>

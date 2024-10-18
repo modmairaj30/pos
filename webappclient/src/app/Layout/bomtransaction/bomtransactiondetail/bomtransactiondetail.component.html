@@ -1,0 +1,17 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">POS/Billing</a>
+    <ng-template ngbNavContent>
+    <app-bomtransactionentry [(bomtransaction)]="bomtransaction" [(editmod)]="editmod"  (editEntry)="editEntry($event)"></app-bomtransactionentry>
+    </ng-template>
+  </li>
+  
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">POS/Billing @History</a>
+    <ng-template ngbNavContent>
+    <app-bomtransactionhistory (editBomtransactionEntry)="editBomtransactionEntry($event)" ></app-bomtransactionhistory>
+    </ng-template>
+  </li>
+ 
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

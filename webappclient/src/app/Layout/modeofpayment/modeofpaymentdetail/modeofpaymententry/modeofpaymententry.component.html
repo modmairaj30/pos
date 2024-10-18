@@ -1,0 +1,47 @@
+
+<div>
+  <form autocomplete="off"  #formForm="ngForm" (ngSubmit)="formForm.form.valid && save()">
+    <div class="panel panel-primary">
+      <p-toolbar [style]="{width: '95%',padding:'2px'}">
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="row">
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="submit" label="Save"  icon="pi pi-check"
+                iconPos="left"></button>
+            </div>
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="reset" label="Reset" (click)="formForm.resetForm()" icon="pi pi-undo"
+                iconPos="left"></button>
+            </div>
+          </div>
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+
+          <div class="col-sm-6 form-group row">
+            <label class="col-sm-4 col-form-label">Paymentmode</label>
+            <div class="col-sm-6">
+              <input type="text" autofocus class="form-control" AlphaNumeric='true' name="paymentMode" required #paymentmode="ngModel"
+                [(ngModel)]="paymentModemaster.paymentMode">
+               <div *ngIf="paymentmode.errors && (paymentmode.dirty || paymentmode.touched)"
+                class="error-tooltip  top" style=" right: -164px;">
+                <div [hidden]="Payment.hasError().required">Payment mode is required.</div>
+                <div [hidden]="Payment.hasError().pattern">No leading space is allowed.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

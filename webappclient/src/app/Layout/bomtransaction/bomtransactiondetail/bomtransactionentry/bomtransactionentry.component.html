@@ -1,0 +1,136 @@
+<div>
+  <form autocomplete="nope"  >
+    <div class="panel panel-primary">
+      <p-toolbar [style]="{width: '95%',padding:'2px'}">
+        <div class="p-toolbar-group-left ">
+          <div class="col-sm-8">
+            <app-barcodesearch  [content]="localList2" #fe (onSelect)="selectedAutoCompletedValue($event)" (keydown)="onBarcode($event)" (onItem)="noSuchItem();" (rowSelect)="rowSelect($event);" ></app-barcodesearch>
+          </div>
+          <div class="col-sm-4">
+            <input type="text"  class="form-control" #qty name="qty" id="qty" OnlyNumber='true'   maxlength="9" placeholder="Qty" (change)="add($event)">
+          </div>
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="row">
+            <div class="col-sm-6 form-group row">
+              <label class="col-sm-4 col-form-label">Bill No</label>
+              <div class="col-sm-8">
+                <input type="text" tabindex="-1"  name="docNo" class="form-control" [(ngModel)]="bomtransaction.billNo" placeholder="B.No"
+                OnlyNumber='true' >
+              </div>
+            </div>
+
+            <div class="col-sm-6 form-group row">
+              <label class="col-sm-3 col-form-label">Date</label>
+              <div class="col-sm-9">
+                <p-calendar dateFormat="mm-dd-yy" tabindex="-1" hideOnDateTimeSelect="true" hourFormat="12" showTime="true" 
+            [showIcon]="true" name="docDt" [(ngModel)]="bomtransaction.billDt"></p-calendar>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </p-toolbar>
+
+      
+
+      <div class="row">
+       
+      <div class="col-sm-9 bs" >
+        <div class="card" >  
+        <p-table   id="detailtable"   [value]="products2" styleClass="p-datatable-striped p-datatable-gridlines" selectionMode="single"  [(selection)]="selectedProduct" [tableStyle]="{ 'min-width': '50rem' }" #detailtable dataKey="sno" scrollHeight="5050px" height="100%"  scrollDirection="both" [scrollable]="true"   [responsive]="true" >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:3em">SNo.</th>
+              <th style="width:10em;text-align:center;">Item</th>
+              <th style="width:4em;text-align:center;">UOM</th>
+              <th style="width:4em;text-align:center;">Qty</th>
+              <th style="width:4em;text-align:center;">Rate</th>
+              <th style="width:4em;text-align:center;">Amount</th>
+              <th style="width:2em;text-align:center;"></th>
+               </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product  let-ri="rowIndex">
+            <tr >
+              <td style="width:3em">{{product.sno}}</td>
+              <td style="width:10em;text-align:left;">{{product.itemName}}</td>
+              <td style="width:4em;text-align:center;">{{product.uom}}</td>        
+              <td style="width:4em;text-align:center;">{{product.qty}}</td>  
+              <td style="width:4em;text-align:right;">{{product.rate | number:'1.2-2'}}</td> 
+              <td style="width:4em;text-align:right;">{{product.amount | number:'1.2-2'}}</td>
+              <td style="width:2em;">
+               <button pButton pRipple icon="pi pi-trash" tabindex="-1" style="color: red" (dblclick)="delete($event,product,ri)"></button>
+          </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <tr>
+              <th style="width:3em"></th>
+                   
+              <th style="width:4em"></th>  
+              <th style="width:10em;text-align:right;">Total Items</th>
+              <th style="width:4em;text-align:center;">{{bomtransaction.totQty | number:'1.2-2'}}</th>
+              <th style="width:4em;text-align:right;">Total Amount</th> 
+              <th style="width:4em;text-align:right;">{{bomtransaction.totAmt | number:'1.2-2'}}</th>
+              <th style="width:2em"></th>  
+            </tr>
+        </ng-template>-
+        </p-table>
+      </div>    
+     </div>    
+     <div class="col-sm-3 bs" >
+      <div class="card bs1" style="width: 80%;text-align:left;">
+        <table>
+        <tr><th colspan="3" style="text-align:center;"> <label>Summary</label></th></tr>
+        <tr><th colspan="3" style="text-align:center;"> <label>----------</label></th></tr>
+        <tr><th style="text-align:left;"><label>Total Items</label></th><th style="text-align:left;"><label>:</label></th><th style="text-align:right;"><label>{{bomtransaction.totQty | number:'1.2-2'}}</label></th> </tr>
+        <tr><th style="text-align:left;"><label>Total Amount</label></th><th style="text-align:left;"><label>:</label></th><th style="text-align:right;"><label>{{bomtransaction.totAmt | number:'1.2-2'}}</label></th> </tr>
+        <tr><th style="text-align:left;color: red;"><label>Total Discount</label></th><th style="text-align:left;"><label>:</label></th><th style="text-align:right;color: red;"><label>{{bomtransaction.totDiscount | number:'1.2-2'}}</label></th>   </tr>
+        <tr><th colspan="3" style="text-align:center;"> <label>----------</label></th></tr>
+        <tr><th style="text-align:left;color:blue"><label>Grand Total</label></th><th style="text-align:left;"><label>:</label></th><th style="text-align:right;color: blue;"><label>{{bomtransaction.totAmt | number:'1.2-2'}}</label></th>   </tr>  
+        </table>
+
+       
+       
+        
+       
+        </div>
+        <div class="bs1"></div>
+      <div class="card" style="width: 80%;text-align:left;" >
+        <div class="bs1">
+         <button pButton pRipple tabindex="-1" type="reset" label="Reset (F5)" (click)="reset()" icon="pi pi-undo" iconPos="left"></button>
+        </div>
+              
+        <div class="bs1">
+          <button pButton pRipple tabindex="-1"  label="PDF (F6)" (click)="openPDF()" [disabled]="printFlag"  icon="pi pi-file-pdf" class="p-button-help" iconPos="left"></button>
+        </div>
+        <div class="bs1">
+          <button pButton pRipple tabindex="-1" (click)="save1()" label="Save (F7)" icon="pi pi-check"  class="p-button-success" iconPos="left"></button>
+        </div>
+        <div class="bs1">
+          <button pButton pRipple tabindex="-1"  label="Print (F8)" (click)="testPrint()"  [disabled]="printFlag" icon="pi pi-print" class="p-button-info" iconPos="left"></button>
+                  </div>
+        
+      </div>
+      <div class="bs1"></div>
+      <div class="card bs1" style="width: 80%;text-align:left;">
+      <table>
+        
+        <tr><th style="text-align:left;color: green;"><label>Cash Received</label></th><th style="text-align:left;"><label>:</label></th><th><input type="text" class="form-control p-inputtext-lg"  OnlyNumber='true' name="cashRecieved" (keyup)="onKeyUp()"  [(ngModel)]="bomtransaction.cashRecieved" placeholder="0.00"> </th> </tr>
+        <tr><th style="text-align:left;color: red;"><label>Cash Return</label></th><th style="text-align:left;"><label>:</label></th><th style="text-align:right;color: red;"><label>{{bomtransaction.cashReturn | number:'1.2-2'}}</label></th>   </tr>
+       
+        </table>
+      </div>
+     </div> 
+     
+    </div>
+    
+      
+      
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+  <p-confirmPopup></p-confirmPopup>
+  <thermalprint [width]="'80mm'" [bomtransaction]="bomtransaction" hidden></thermalprint>
+</div>

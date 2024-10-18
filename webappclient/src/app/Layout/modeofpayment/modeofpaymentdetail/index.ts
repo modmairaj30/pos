@@ -1,0 +1,6 @@
+export * from './modeofpaymentdetail.component';
+
+
+
+
+

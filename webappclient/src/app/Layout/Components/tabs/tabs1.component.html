@@ -1,0 +1,14 @@
+<div  class="app-nav">
+  <ul class="nav nav-tabs">
+  <a><li>{{parentTitle}}</li></a>
+</ul>
+  <div > 
+<ul class="nav nav-tabs">
+  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
+   <a  href="{{tab.parent+'#'}}" >{{tab.title}}</a>
+  </li>
+</ul>
+<div class="card-body">
+<ng-content></ng-content>
+</div>
+</div>

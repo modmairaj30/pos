@@ -1,0 +1,159 @@
+@import "assets/base";
+@import url("../node_modules/primeicons/primeicons.css");
+@import url("../node_modules/primeng/resources/themes/saga-orange/theme.css");
+@import url("../node_modules/primeng/resources/primeng.min.css"); 
+
+.p-scrollpanel {
+    p {
+        padding: .5rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    &.custombar1 {
+        .p-scrollpanel-wrapper {
+            border-right: 9px solid var(--layer-1);
+        }
+
+        .p-scrollpanel-bar {
+            background-color: var(--primary-color);
+            opacity: 1;
+            transition: background-color .2s;
+
+            &:hover {
+                background-color: #007ad9;
+            }
+        }
+    }
+
+    &.custombar2 {
+        .p-scrollpanel-wrapper {
+            border-right: 9px solid var(--layer-1);
+            border-bottom: 9px solid var(--layer-1);
+        }
+
+        .p-scrollpanel-bar {
+            background-color: var(--layer-2);
+            border-radius: 0;
+            opacity: 1;
+            transition: background-color .2s;
+        }
+    }
+}
+.p-component {
+    font-size: $font-size-base;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+    border-radius: 20%;
+    height: 0.3rem;
+}
+.p-datatable .p-datatable-header{
+    border:0px;
+    padding:10px;
+}
+.p-paginator{
+    padding:0px;
+}
+.p-paginator .p-paginator-pages .p-paginator-page{
+    min-width: 1.357rem;
+    height:1.357rem;
+}
+.p-link{
+    font-size: $font-size-base;
+}
+
+.p-autocomplete-dd .p-autocomplete-input {
+    height: 25px;
+    font-size: $font-size-base;
+} 
+
+.p-button {
+   height: 25px;
+   margin: 0.8px;
+}
+.col-form-label{
+    padding-top:0rem;
+    padding-bottom:0rem;
+}
+.p-inputtext {
+    height: 25px;
+    font-size: $font-size-base;
+}
+.p-multiselect{
+    margin-right: 2px;
+}
+.p-multiselect .p-multiselect-label{
+    height: 25px;
+    font-size: $font-size-base;
+}
+.p-toolbar{
+padding: 0rem;
+}
+.p-datatable .p-datatable-thead > tr > th{
+    padding-top:0rem;
+    padding-bottom:0.25rem;
+    padding-left:0.25rem;
+    padding-right:0rem;
+ }
+ .p-datatable .p-datatable-tbody > tr > td{
+    padding-top:0rem;
+    padding-bottom:0rem; 
+    padding-left:0.25rem;
+    padding-right:0.25rem; 
+ }
+.error-tooltip {background-color: #f2dede; background-image: -moz-linear-gradient(top, #444, #444); position: relative; color: #a94442; padding: 3px; border-radius: 3px; box-shadow: 0px 0px 3px #ccc; border: 1px solid #ebccd1; position: absolute; top: 0;    right: -100px; font-size:9px;   /* text-shadow: 0 0 1px #000; */ /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+    max-width: 83%;
+    z-index: 1;
+    white-space: normal;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    width: 100%;
+    line-height:9px; 
+}
+.required-asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.2em;
+}
+.panel-body {
+    padding-top: 20px;
+}
+
+.p-scrollpanel .p-scrollpanel-bar {
+    background: #495057;
+    border: 10 none;
+}
+.p-scrollpanel-content{
+    padding:0px;
+}
+.p-button:focus {
+   // box-shadow: 0 0 0 0.2rem #2FA4E7
+   // box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+}
+//Calendar  Style
+ .p-datepicker table td {
+    padding: 0.2rem !important;
+  }
+  
+   .p-datepicker table td > span {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+  
+   .p-datepicker table {
+    font-size: $font-size-base;
+    margin: -0.143rem 0;
+  }
+  
+   .p-datepicker .p-datepicker-header {
+    padding: 0.2rem;
+  }
+   .p-datepicker .p-timepicker span {
+    font-size:   $font-size-base;
+}
+
+
+
+  

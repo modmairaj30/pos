@@ -1,0 +1,16 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Item Master</a>
+    <ng-template ngbNavContent>
+      <app-authormasterentry [(itemmaster)]="itemmaster"></app-authormasterentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="clear();">Item Master @History</a>
+    <ng-template ngbNavContent>
+      <app-authormasterhistory (editBranchentry)="editBranchentry($event)"></app-authormasterhistory>
+    </ng-template>
+  </li>
+
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

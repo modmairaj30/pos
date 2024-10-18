@@ -1,0 +1,6 @@
+export * from './userdetail.component';
+
+
+
+
+

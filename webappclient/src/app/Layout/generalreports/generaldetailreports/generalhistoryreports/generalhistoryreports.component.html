@@ -1,0 +1,97 @@
+<div>
+    <div class="card">
+
+
+        <p-toolbar>
+            <div class="p-toolbar-group-left"></div>
+            <div class="p-toolbar-group-right">
+
+                <button class="p-button-info p-mr-2" icon="pi pi-print" pButton pRipple label="Print"
+                    (click)="find()"></button>
+                <button class="p-button-success p-mr-2" icon="pi pi-file-excel" pButton pRipple label="Excel"
+                    (click)="find()"></button>
+            </div>
+        </p-toolbar>
+        <div class="panel-body" >
+            <div class="row">
+                <div class="col-sm-3 form-group row">
+                    <label class="col-sm-3 col-form-label">Location<span class="required-asterisk">*</span></label>
+                    <div class="col-sm-8">
+                        <p-autoComplete [minLength]="1" #fe name="locationId" [(ngModel)]="reportInput.locationId"
+                            #localOS="ngModel" required [suggestions]="filteredEmpList1"
+                            (completeMethod)="filterEmpList1($event)" field="location_name" [dropdown]="true"
+                            [multiple]="false">
+                            <ng-template let-branch pTemplate="item">
+                                <div class="branch-item">
+                                    <div>{{branch.location_name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
+
+
+                    </div>
+                </div>
+               
+                <div class="col-sm-3 form-group row">
+                    <label class="col-sm-3 col-form-label">Module Name<span class="required-asterisk">*</span></label>
+                    <div class="col-sm-8">
+                        <p-autoComplete [minLength]="1" #fe name="locationId" [(ngModel)]="reportInput.locationId"
+                            #localOS="ngModel" required [suggestions]="filteredEmpList1"
+                            (completeMethod)="filterEmpList1($event)" field="location_name" [dropdown]="true"
+                            [multiple]="false">
+                            <ng-template let-branch pTemplate="item">
+                                <div class="branch-item">
+                                    <div>{{branch.location_name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-3 form-group row">
+                    <label class="col-sm-3 col-form-label">Report Name<span class="required-asterisk">*</span></label>
+                    <div class="col-sm-8">
+                        <p-autoComplete [minLength]="1" #fe name="locationId" [(ngModel)]="reportInput.locationId"
+                            #localOS="ngModel" required [suggestions]="filteredEmpList1"
+                            (completeMethod)="filterEmpList1($event)" field="location_name" [dropdown]="true"
+                            [multiple]="false">
+                            <ng-template let-branch pTemplate="item">
+                                <div class="branch-item">
+                                    <div>{{branch.location_name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
+
+
+                    </div>
+                </div>
+                <div class="col-sm-3 form-group row">
+                    <label class="col-sm-4 col-form-label">From Date<span class="required-asterisk">*</span></label>
+                    <div class="col-sm-8">
+                        <p-calendar dateFormat="dd-mm-yy"  hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                            [showIcon]="true" name="fromDate" [(ngModel)]="reportInput.fromDate"></p-calendar>
+                    </div>
+                </div>
+
+                <div class="col-sm-3 form-group row">
+                    <label class="col-sm-3 col-form-label">To Date<span class="required-asterisk">*</span></label>
+                    <div class="col-sm-8">
+                        <p-calendar dateFormat="dd-mm-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                            [showIcon]="true" name="toDate" [(ngModel)]="reportInput.toDate">
+                        </p-calendar>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: 'rgba(255,255,255,0.5)', backdropBorderRadius: '0px',
+ primaryColour: '#3a73b8', secondaryColour: '#3a73b8', tertiaryColour: '#3a73b8' }"></ngx-loading>
+    <p-toast position="bottom-center" key="success"></p-toast>
+    <p-toast position="bottom-center" key="error"></p-toast>
+</div>

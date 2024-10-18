@@ -1,0 +1,6 @@
+export * from './stocktransferrequisitiondetail.component';
+
+
+
+
+

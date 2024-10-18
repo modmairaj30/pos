@@ -1,0 +1,32 @@
+<div
+  [ngClass]="[classes.printAreaContainer, classes.fontMono]"
+  [ngStyle]="{ width: width }"
+>
+
+  <div [ngClass]="classes.singleLine"><strong>MAHBOOB STORE</strong></div>
+  <div [ngClass]="classes.singleLine">Bill.No:{{bomtransaction.billNo}}</div>
+  <div [ngClass]="classes.singleLine">Date:{{bomtransaction.billDt| date: 'dd/MM/yyyy'}}</div>
+  <div [ngClass]="classes.singleLine">&nbsp;</div>
+
+ 
+
+  
+    <div [ngClass]="classes.singleLine1"><strong >Sn&nbsp;&nbsp;</strong><strong>Item</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Qty</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Rate</strong>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Amt</strong></div>
+    <div [ngClass]="[classes.gridBorder, classes.gridBorderDouble]"></div>
+    <div *ngFor="let item of bill; let i = index">
+    <div [ngClass]="classes.singleLine1">{{ item.sno }}&nbsp;&nbsp;{{ item.itemName.substring(0,8)}}&nbsp;&nbsp;&nbsp;{{ item.qty }}&nbsp;&nbsp;&nbsp;{{ item.rate}}&nbsp;&nbsp;&nbsp;{{ item.amount }}</div>
+    </div>
+
+  <div [ngClass]="classes.singleLine">
+  
+    <div [ngClass]="[classes.gridBorder, classes.gridBorderSolid]"></div>
+
+    <div [ngClass]="[classes.textRight, classes.maxLine2]">
+      <strong> Total Amount:  {{bomtransaction.totAmt}}</strong></div>
+      <div [ngClass]="classes.singleLine">&nbsp;</div>
+      <div [ngClass]="[classes.textCenter, classes.maxLine2]">
+        <strong> Thank Q, Visit Again. </strong></div>
+    
+    
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div>
+  <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+        <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid" iconPos="left"></button>
+        <button pButton pRipple type="reset" label="Reset(F5)" (click)="reset()" [disabled]="editmod" icon="pi pi-undo" iconPos="left"></button>
+        </div>
+       </p-toolbar>
+      <div class="panel-body">
+
+        
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Payments to</label>
+            <div class="col-sm-8">
+             
+              <p-autoComplete autofocusonloading [minLength]="1" name="partyId" [(ngModel)]="payment.partyId" 
+              [suggestions]="filteredEmpList1" (completeMethod)="filterEmpList1($event)" field="party_name" 
+              [dropdown]="true">
+              <!--[(ngModel)]="Payment.party_name"  #party_name="ngModel" required-->
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.party_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            <!--div *ngIf="party_name.errors && (party_name.dirty ||party_name.touched)" class="error-tooltip  top">
+              <div [hidden]="party_name.hasError().required">Party name is required.
+              </div>
+            </div-->
+            
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Vchr No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="docNo" [(ngModel)]="payment.docNo" [disabled]="true"
+                 >
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Location</label>
+            <div class="col-sm-8">
+              <p-autoComplete autofocusonloading [minLength]="1" name="locationId" [(ngModel)]="payment.locationId" 
+              [suggestions]="filteredList5" (completeMethod)="filterList5($event)" field="location_name" 
+              [dropdown]="true">
+              <!--[(ngModel)]="Payment.party_name"  #party_name="ngModel" required-->
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.location_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Amount</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="totalAmt" [(ngModel)]="payment.totalAmt" OnlyNumber='true' >
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Vchr Date</label>
+            <div class="col-sm-8">
+              <p-calendar dateFormat="mm-dd-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"[(ngModel)]="payment.docDt"
+              [showIcon]="true" name="docDt" ></p-calendar>
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Particulars</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="particulars"  [(ngModel)]="payment.particulars"
+              >
+            </div>
+          </div>
+          </div>
+         
+          
+    </div>
+    <div>
+
+      
+    </div>
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

@@ -1,0 +1,128 @@
+<div>
+  <form autocomplete="off" #formForm="ngForm">
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+          
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="row d-flex justify-content-around">
+            <div class="col-sm-6 ">
+              <p-button label="Save(F2)" (click)="save();" styleClass="p-mr-2" size="large"></p-button>
+            </div>
+            <div class="col-sm-6 ">
+              <p-button label="Reset" styleClass="p-mr-2" (click)="formForm.resetForm()" size="large"></p-button>
+            </div>
+          </div>
+        </div>
+      </p-toolbar>
+
+      <div class="panel-body">
+
+        
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Production No</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight" 
+                OnlyNumber='true' >
+            </div>
+          </div>
+          
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">No.Of.Copies</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight" 
+                OnlyNumber='true' >
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Publisher</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="toWeight" >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Production Date</label>
+            <div class="col-sm-8">
+              <p-calendar dateFormat="mm-dd-yy" hideOnDateTimeSelect="true" hourFormat="12" showTime="true"
+                [showIcon]="true" name="fromWeight" ></p-calendar>
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Rate</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="fromWeight" 
+                OnlyNumber='true' >
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Disc Amt</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="toWeight" >
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Title</label>
+            <div class="col-sm-8">
+              <p-autoComplete [minLength]="1" name="party_name" 
+              [suggestions]="filteredEmpList2" (completeMethod)="filterEmpList2($event)" field="prod_name"
+              [dropdown]="true">
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.prod_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            
+            </div>
+          </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Gross Amt</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Edition</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 form-group row">
+              <label class="col-sm-4 col-form-label">Author</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="toWeight" >
+              </div>
+            </div>
+            
+              <div class="col-sm-4 form-group row">
+                <label class="col-sm-4 col-form-label">Disc%</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="toWeight" >
+                </div>
+              </div>
+
+              <div class="col-sm-4 form-group row">
+                <label class="col-sm-4 col-form-label">Net Amt</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="toWeight">
+                </div>
+              </div>
+          </div>
+          
+    </div>
+    <div>
+
+          </div>
+    </div>
+  </form>
+
+</div>

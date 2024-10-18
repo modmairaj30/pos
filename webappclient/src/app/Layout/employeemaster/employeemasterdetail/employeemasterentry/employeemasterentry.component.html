@@ -1,0 +1,112 @@
+<div>
+  <form autocomplete="off"  #formForm="ngForm" (ngSubmit)="formForm.form.valid && save()">
+  
+    <div class="panel panel-primary">
+      <p-toolbar [style]="{width: '95%',padding:'2px'}">
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <div class="row">
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="submit" label="Save"  icon="pi pi-check" [disabled]="!formForm.form.valid"
+                iconPos="left"></button>
+            </div>
+            <div class="col-sm-6 ">
+              <button pButton pRipple type="reset" label="Reset" (click)="formForm.resetForm()" icon="pi pi-undo"
+                iconPos="left"></button>
+            </div>
+          </div>
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Employee Name</label>
+            <div class="col-sm-8">
+              <input type="text" autofocusonloading class="form-control"  style="text-transform: uppercase;" [(ngModel)]="employeemaster.employNo" name="employNo" required #employeemaster="ngModel">
+              <div *ngIf="employeemaster.errors && (employeemaster.dirty || employeemaster.touched)"
+              class="error-tooltip  top" style=" right: -164px;">
+              <div [hidden]="employeemaster.hasError().required">Employee Name is required.</div>
+              <div [hidden]="employeemaster.hasError().pattern">No leading space is allowed.</div>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Emp Code</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="empcode" style="text-transform: uppercase;" [(ngModel)]="employeemaster.title"  OnlyNumber='true' required #empcode="ngModel"
+                >
+                <div *ngIf="empcode.errors && (empcode.dirty || empcode.touched)"
+              class="error-tooltip  top" style=" right: -100px;">
+              <div [hidden]="empcode.hasError().required">Employee code is required.</div>
+              <div [hidden]="empcode.hasError().pattern">No leading space is allowed.</div>
+            </div>
+           </div>
+          </div>
+          </div>
+         
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Designation</label>
+            <div class="col-sm-8">
+              <p-autoComplete [minLength]="1" name="desig" [(ngModel)]="employeemaster.desig" 
+                [suggestions]="designationList" (completeMethod)="designationList5($event)"
+                field="designation" [dropdown]="true" [multiple]="false" #desig="ngModel" required>
+                <ng-template let-branch pTemplate="item">
+              <div class="branch-item"></div>
+                    <div>{{branch.designation}}</div>
+                </ng-template>
+              </p-autoComplete>
+              <div *ngIf="desig.errors && (desig.dirty ||desig.touched)" class="error-tooltip  top">
+                <div [hidden]="desig.hasError().required">Designation is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Department</label>
+            <div class="col-sm-8">
+              <p-autoComplete [minLength]="1" name="dept" [(ngModel)]="employeemaster.dept"
+              [suggestions]="departmentList" (completeMethod)="departmentList5($event)"
+              field="department" [dropdown]="true" [multiple]="false" >
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.department}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            <!--div *ngIf="localOS.errors && (localOS.dirty ||localOS.touched)" class="error-tooltip  top">
+              <div [hidden]="localOS.hasError().required">Department is required.
+              </div>
+            </div-->
+
+            </div>
+        </div>
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">Location</label>
+          <div class="col-sm-8">
+            <p-autoComplete [minLength]="1" name="docNo" [(ngModel)]="employeemaster.docNo"  #docNo="ngModel" required
+              [suggestions]="filteredList5" (completeMethod)="filterList5($event)"
+              field="location_name" [dropdown]="true" [multiple]="false" >
+              <ng-template let-branch pTemplate="item">
+                <div class="branch-item">
+                  <div>{{branch.location_name}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            <div *ngIf="docNo.errors && (docNo.dirty ||docNo.touched)" class="error-tooltip  top">
+              <div [hidden]="docNo.hasError().required">Location is required.
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

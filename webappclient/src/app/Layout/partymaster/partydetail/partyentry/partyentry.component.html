@@ -1,0 +1,155 @@
+<div>
+  <form autocomplete="nope" #formForm="ngForm" (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left ">
+        </div>
+        <div class="p-toolbar-group-right">
+          <button pButton pRipple type="submit" label="Save(F2)" [disabled]="!formForm.form.valid" icon="pi pi-check" iconPos="left"></button>
+          <button pButton pRipple type="reset" label="Reset(F5)" (click)="formForm.resetForm()" [disabled]="editmod" icon="pi pi-undo" iconPos="left"></button>
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Party Name<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" autofocusonloading style="text-transform: uppercase;"
+                class="form-control" name="partyName" [(ngModel)]="partymaster.partyName" required #partyName="ngModel">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Party Type<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <p-autoComplete [(ngModel)]="partymaster.partyType" name="partyType" [minLength]="1"
+                [suggestions]="filteredParties" (completeMethod)="filterParty($event)" field="type_name"
+                [dropdown]="true" #partyType="ngModel" required>
+
+                <ng-template let-branch pTemplate="item">
+                  <div class="branch-item">
+                    <div>{{branch.type_name}}</div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+
+
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Contact Person</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control" name="contactperson"
+                [(ngModel)]="partymaster.contactperson"  #contactperson="ngModel">
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control" name="address1"
+                [(ngModel)]="partymaster.address1" required #address1="ngModel">
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Route</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control" name="address2"
+                [(ngModel)]="partymaster.address2" #address2="ngModel">
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address3</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="nope" class="form-control" name="address3"
+                [(ngModel)]="partymaster.address3" #address3="ngModel">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">City<span class="required-asterisk">*</span></label>
+          <div class="col-sm-8">
+            <input type="text" autocomplete="nope" class="form-control" name="city" [(ngModel)]="partymaster.city"
+              required #city="ngModel">
+
+          </div>
+        </div>
+
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">State<span class="required-asterisk">*</span></label>
+          <div class="col-sm-8">
+            <input type="text" autocomplete="nope" class="form-control" name="state" [(ngModel)]="partymaster.state"
+              required #state="ngModel">
+
+          </div>
+        </div>
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">Mobile No</label>
+          <div class="col-sm-8">
+            <input type="text" autocomplete="nope" class="form-control" OnlyNumber="true" name="mobileno"
+              [(ngModel)]="partymaster.mobileno" #mobileno="ngModel">
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+
+
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">PIN Code</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="pincode" OnlyNumber="true" minlength="6" maxlength="6"
+              [(ngModel)]="partymaster.pincode"  autocomplete="nope">
+
+          </div>
+        </div>
+
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">Email ID</label>
+          <div class="col-sm-8">
+            <input type="text" autocomplete="nope" class="form-control" name="email" [(ngModel)]="partymaster.email"
+              #email="ngModel">
+
+          </div>
+        </div>
+        <div class="col-sm-4 form-group row">
+          <label class="col-sm-4 col-form-label">Phone No1</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="telno" [(ngModel)]="partymaster.telno" #telno="ngModel">
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+    <div>
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

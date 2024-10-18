@@ -1,0 +1,22 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Sales Invoice</a>
+    <ng-template ngbNavContent>
+    <app-salesinvoiceentry [(salesinvoice)]="salesinvoice" [(editmod)]="editmod" [(shareData)]="shareData" (editEntry)="editEntry($event)"></app-salesinvoiceentry>
+    </ng-template>
+  </li>
+  <!--<li [ngbNavItem]="2">
+    <a ngbNavLink  (click)="setTab()">Payment</a>
+    <ng-template ngbNavContent>
+    <app-salesinvoicepayment  [(salesinvoice)]="salesinvoice"  [(editmod)]="editmod" [(shareData)]="shareData" (editEntry)="editEntry($event)"></app-salesinvoicepayment>
+    </ng-template>
+  </li>-->
+  <li [ngbNavItem]="3">
+    <a ngbNavLink (click)="setTab()">Sales Invoice @History</a>
+    <ng-template ngbNavContent>
+    <app-salesinvoicehistory (editSalesinvoiceEntry)="editSalesinvoiceEntry($event)" [(shareData)]="shareData"></app-salesinvoicehistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

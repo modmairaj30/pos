@@ -1,0 +1,172 @@
+<div>
+  <form autocomplete="disabled" #formForm="ngForm" (keydown.enter)="$event.preventDefault()"
+    (ngSubmit)="formForm.form.valid && save()" novalidate>
+    <div class="panel panel-primary">
+      <p-toolbar>
+        <div class="p-toolbar-group-left"></div>
+        <div class="p-toolbar-group-right">
+          <button pButton pRipple type="submit" label="Save(F2)" icon="pi pi-check" [disabled]="!formForm.form.valid"
+            iconPos="left"></button>
+          <button pButton pRipple type="reset" (click)="formForm.resetForm()" label="Reset(F5)" icon="pi pi-undo"
+            iconPos="left"></button>
+        </div>
+      </p-toolbar>
+      <div class="panel-body">
+
+        <div class="row">
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Hub<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" #fe autofocusonloading id="locationName" AlphaNumeric='true' style="text-transform: uppercase;"
+                class="form-control" name="locationName" [(ngModel)]="locationmaster.locationName" required>
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Hub Code<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" AlphaNumericNoSpace='true' name="locationCode" required
+                [(ngModel)]="locationmaster.locationCode" required>
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Phone No<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" autocomplete="disabled" OnlyNumber='true' name="pn" [(ngModel)]="locationmaster.phNo"
+                required>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Contact Person<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled"  class="form-control" AlphaNumeric='true' name="cn"
+                [(ngModel)]="locationmaster.contName" #contName="ngModel" required>
+
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Mobile No<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled"  class="form-control" name="m" [(ngModel)]="locationmaster.mobileNo"
+                #mobileNo="ngModel" required OnlyNumber='true' minlength=10 maxlength="15">
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Email<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="email" [(ngModel)]="locationmaster.email" #email="ngModel"
+                required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [maxlength]="80">
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" required name="address" [(ngModel)]="locationmaster.adress"
+                #adress="ngModel" required>
+
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address2</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="ad2" [(ngModel)]="locationmaster.address2">
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Address3</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="ad3" [(ngModel)]="locationmaster.address3">
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">City<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="city" [(ngModel)]="locationmaster.city" #city="ngModel"
+                required>
+            </div>
+          </div>
+
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">State</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="s" [(ngModel)]="locationmaster.state">
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Pin Code<span class="required-asterisk">*</span></label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="pi" [(ngModel)]="locationmaster.pincode"
+                #pincode="ngModel" required OnlyNumber='true'>
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">Landline No</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="t" [(ngModel)]="locationmaster.telno" OnlyNumber='true'>
+
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">GST Percentage</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="gstPc" [(ngModel)]="locationmaster.gstPc" OnlyNumber='true'
+                minlength=1 maxlength="2">
+            </div>
+          </div>
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">GST No</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="gstNo" [(ngModel)]="locationmaster.gstNo">
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4 form-group row">
+            <label class="col-sm-4 col-form-label">CST NO</label>
+            <div class="col-sm-8">
+              <input type="text" autocomplete="disabled" class="form-control" name="cstNo" [(ngModel)]="locationmaster.cstNo" OnlyNumber='true'>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+  <p-toast position="bottom-center" key="success"></p-toast>
+  <p-toast position="bottom-center" key="error"></p-toast>
+</div>

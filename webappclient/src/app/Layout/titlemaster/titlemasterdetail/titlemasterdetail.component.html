@@ -1,0 +1,18 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink (click)="setTab()">Product Master</a>
+    <ng-template ngbNavContent>
+    <app-titlemasterentry [(titlemaster)]="titlemaster" [(editmod)]="editmod" (editEntry)="editEntry($event)"></app-titlemasterentry>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink (click)="setTab()">Product Master @History</a>
+    <ng-template ngbNavContent>
+    <app-titlemasterhistory (editTitleMasterentry)="editTitleMasterentry($event)"></app-titlemasterhistory>
+    </ng-template>
+  </li>
+  
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+

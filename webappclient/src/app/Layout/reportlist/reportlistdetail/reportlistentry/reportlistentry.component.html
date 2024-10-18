@@ -1,0 +1,153 @@
+<div class="card">
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <label><b> Module  </b></label>
+                    <p-autoComplete [minLength]="1" #fe name="reportType" [(ngModel)]="reportInput.reportType"
+                        #localOS="ngModel" required [suggestions]="filteredEmpList3"
+                        (completeMethod)="filterEmpList3($event)" field="report_type" [dropdown]="true"
+                        [multiple]="false">
+                        <ng-template let-branch pTemplate="item">
+                            <div class="branch-item">
+                                <div>{{branch.report_type}}</div>
+                            </div>
+                        </ng-template>
+                    </p-autoComplete>
+                
+           
+            <span><b>  Report  </b> </span>
+            <p-autoComplete [minLength]="1" #fe name="reportName" [(ngModel)]="reportInput.reportName"
+                #localOS="ngModel" required [suggestions]="filteredEmpList2"
+                (onSelect)="selectedAutoCompletedValue($event);" (completeMethod)="filterEmpList2($event)"
+                field="report_name" [dropdown]="true" [multiple]="false">
+                <ng-template let-branch pTemplate="item">
+                    <div class="branch-item">
+                        <div>{{branch.report_name}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+            
+           
+        </div>
+        
+        <div class="p-toolbar-group-right">
+            <p-button label="View" icon="pi pi-eye" styleClass="p-button-info" (click)="find()"></p-button>
+            <app-excel ></app-excel>
+            <app-report-pdf [head]="head"  [body]="body" [foot]="foot" [dhead]="dhead"
+            [dbody]="dbody" [dfoot]="dfoot" [title]="title" [count]="count"></app-report-pdf>
+           
+        </div>
+    </p-toolbar>
+    <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines"
+        [columns]="selectedColumns" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt"
+        columnResizeMode="expand" #dt [value]="viewResponseData.objects" [rows]="100" [paginator]="true"
+        [globalFilterFields]="['locationName']" [rowHover]="true" dataKey="id" selectionMode=""
+        [(selection)]="selectedRowData" [scrollable]="true" scrollHeight="250px" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+        <ng-template pTemplate="caption">
+           
+
+            <div class="row">
+                
+                    <div class="col-sm-4 form-group row" [hidden]="isFromDate">
+                        <label class="col-sm-4 col-form-label">From Date<span class="required-asterisk">*</span></label>
+                        <div class="col-sm-8">
+                            <p-calendar dateFormat="dd-mm-yy" hideOnDateTimeSelect="true" hourFormat="12"
+                                showTime="true" [showIcon]="true" name="fromDate" [(ngModel)]="reportInput.fromDate">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group row" [hidden]="isToDate">
+                        <label class="col-sm-4 col-form-label">To Date<span class="required-asterisk">*</span></label>
+                        <div class="col-sm-8">
+                            <p-calendar dateFormat="dd-mm-yy" hideOnDateTimeSelect="true" hourFormat="12"
+                                showTime="true" [showIcon]="true" name="toDate" [(ngModel)]="reportInput.toDate">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 form-group row" [hidden]="isLocation">
+                        <label class="col-sm-4 col-form-label">Location<span class="required-asterisk">*</span></label>
+                        <div class="col-sm-8">
+                            <p-autoComplete [minLength]="1" #fe name="locationId" [(ngModel)]="reportInput.locationId"
+                                #localOS="ngModel" required [suggestions]="filteredEmpList1" [hidden]="isLocation"
+                                (completeMethod)="filterEmpList1($event)" field="location_name" [dropdown]="true"
+                                [multiple]="false">
+                                <ng-template let-branch pTemplate="item">
+                                    <div class="branch-item">
+                                        <div>{{branch.location_name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 form-group row" [hidden]="isSupplier">
+                        <label class="col-sm-4 col-form-label">Supplier<span  class="required-asterisk">*</span></label>
+                        <div class="col-sm-8">
+                          <p-autoComplete [minLength]="1" name="partyId" [suggestions]="filteredEmpList4"
+                            (completeMethod)="filterEmpList4($event)" [(ngModel)]="reportInput.partyId" field="party_name"
+                            [dropdown]="true" [multiple]="false">
+                            <ng-template let-branch pTemplate="item">
+                              <div class="branch-item">
+                                <div>{{branch.party_name}}</div>
+                              </div>
+                            </ng-template>
+                          </p-autoComplete>
+                          <!--div *ngIf="localOS.errors && (localOS.dirty ||localOS.touched)" class="error-tooltip  top">
+                              <div [hidden]="localOS.hasError().required">Location is required.
+                              </div>
+                            </div-->
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4 form-group row" [hidden]="isAuthor">
+                        <label class="col-sm-4 col-form-label">Author<span  class="required-asterisk">*</span></label>
+                        <div class="col-sm-8">
+                          <p-autoComplete [minLength]="1" name="authorId" [suggestions]="filteredEmpList5"
+                            (completeMethod)="filterEmpList5($event)" [(ngModel)]="reportInput.authorId" field="authr_name"
+                            [dropdown]="true" [multiple]="false">
+                            <ng-template let-branch pTemplate="item">
+                              <div class="branch-item">
+                                <div>{{branch.authr_name}}</div>
+                              </div>
+                            </ng-template>
+                          </p-autoComplete>
+                          <!--div *ngIf="localOS.errors && (localOS.dirty ||localOS.touched)" class="error-tooltip  top">
+                              <div [hidden]="localOS.hasError().required">Location is required.
+                              </div>
+                            </div-->
+                        </div>
+                      </div>
+
+                
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th style="width: 2rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th *ngFor="let col of viewResponseData.header" [pSortableColumn]="col.field" pResizableColumn>
+                    {{col.field}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-columns="viewResponseData.header">
+            <tr [pSelectableRow]="product">
+                <td style="width: 2rem">
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td *ngFor="let col of viewResponseData.header">
+                    {{product[col.field]}}
+                </td>
+
+            </tr>
+        </ng-template>
+
+    </p-table>
+    <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: 'rgba(255,255,255,0.5)', backdropBorderRadius: '0px',
+        primaryColour: '#3a73b8', secondaryColour: '#3a73b8', tertiaryColour: '#3a73b8' }"></ngx-loading>
+    <p-toast position="bottom-center" key="success"></p-toast>
+    <p-toast position="bottom-center" key="error"></p-toast>
+</div>

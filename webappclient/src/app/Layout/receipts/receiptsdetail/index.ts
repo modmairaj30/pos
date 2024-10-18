@@ -1,0 +1,6 @@
+export * from './receiptsdetail.component';
+
+
+
+
+

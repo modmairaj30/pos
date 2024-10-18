@@ -1,0 +1,67 @@
+<div style="overflow-y: auto; height:450px;overflow-x: hidden; ">  
+  <p-toast></p-toast>
+  
+  <div class="card">
+    
+  
+      <p-table [resizableColumns]="true" styleClass="p-datatable-gridlines" columnResizeMode="expand"   #dt [value]="this.content" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+          [(selection)]="this.content" [rowHover]="true" dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+                <button style="float:right;" class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple label="Pdf" (click)="openPDF()"></button>
+                <button style="float:right;" pButton pRipple label="Excel" icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2" ></button>              
+                <button style="float:right;" pButton pRipple label="Print" icon="pi pi-print" class="p-button-info p-mr-2" (click)="print()" ></button>
+            </div> 
+          </ng-template>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th style="width: 2rem">
+                      <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                  </th>
+                  <th pSortableColumn="branch" pResizableColumn>Branch <p-sortIcon field="branch"></p-sortIcon></th>
+                  <th pSortableColumn="locationName" pResizableColumn>locationName <p-sortIcon field="locationName"></p-sortIcon></th>
+                  <th pSortableColumn="locationCode" pResizableColumn>locationCode <p-sortIcon field="locationCode"></p-sortIcon></th>
+                  <th pSortableColumn="emailId" pResizableColumn>EmailId <p-sortIcon field="emailId"></p-sortIcon></th>
+                  <th pSortableColumn="mobNo" pResizableColumn>MobNo <p-sortIcon field="mobNo"></p-sortIcon></th>
+                  <th pSortableColumn="region" pResizableColumn>Region <p-sortIcon field="region"></p-sortIcon></th>
+                  <th pSortableColumn="address" pResizableColumn>Address <p-sortIcon field="address"></p-sortIcon></th>
+                  <!--th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th-->
+                  <th></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+              <tr>
+                  <td>
+                      <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                  </td>
+                  <td>{{product.branch}}</td>
+                  <td>{{product.locationName}}</td>
+                  <td>{{product.locationCode}}</td>
+                  <td>{{product.emailId}}</td>
+                  <td>{{product.mobNo}}</td>
+                  <td>{{product.region}}</td>
+                  <td>{{product.address}}</td>
+                  <!--td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                  <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td-->
+                  <td>
+                      <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
+                      <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                  </td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+              <div class="p-d-flex p-ai-center p-jc-between">
+                  In total there are {{products ? products.length : 0 }} products.
+              </div>
+          </ng-template>
+      </p-table>
+  </div>
+  
+ 
+  </div>

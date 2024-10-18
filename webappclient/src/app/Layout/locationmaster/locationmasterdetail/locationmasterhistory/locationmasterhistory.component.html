@@ -1,0 +1,136 @@
+<div>
+    <div class="card">
+
+        <p-table [resizableColumns]="true" styleClass="p-datatable-striped p-datatable-gridlines"
+            [columns]="selectedColumns" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" id="dt"
+            columnResizeMode="expand" #dt [value]="content" [rows]="100" [paginator]="true"
+            [globalFilterFields]="['locationName']" [rowHover]="true" dataKey="id" selectionMode=""
+            [(selection)]="selectedRowData" [scrollable]="true" scrollHeight="380px"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+
+            <ng-template pTemplate="caption">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                    <div class="p-toolbar-group-right">
+                        <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+                            selectedItemsLabel="{0} columns selected" [style]="{minWidth: '150px'}"
+                            placeholder="Choose Columns"></p-multiSelect>
+                        <i class="pi pi-ellipsis-v"></i>
+                        <button class="p-button-help p-mr-2" icon="pi pi-file-pdf" pButton pRipple label=""
+                            (click)="openPDF()"></button>
+                        <button pButton pRipple label="" icon="pi pi-file-excel" (click)="exportExcel()"
+                            class="p-button-success p-mr-2"></button>
+                        <button pButton pRipple label="" icon="pi pi-print" class="p-button-info p-mr-2"
+                            (click)="print()"></button>
+
+                    </div>
+                </p-toolbar>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th style="width: 2rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <!--
+                    <th *ngFor="let col of columns" pSortableColumn="col.field" pResizableColumn>
+                        {{col.header}}<p-sortIcon field="col.field"></p-sortIcon>
+                    </th>-->
+                    <th style="width: 3rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-columns="columns">
+                <tr [pSelectableRow]="product">
+                    <td style="width: 2rem">
+                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    </td>
+                    <td *ngFor="let col of columns">
+                        {{product[col.field]}}
+                    </td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info p-button-icon"
+                            (click)="editProduct(product)"></button>
+                        <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+                    </td>
+                </tr>
+            </ng-template>
+            <!--
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                    <th pSortableColumn="locationName" pResizableColumn>Location <p-sortIcon field="locationName"></p-sortIcon></th>
+                    <th pSortableColumn="locationCode" pResizableColumn>Location Code <p-sortIcon field="locationCode"></p-sortIcon></th>
+                    <th pSortableColumn="adress" pResizableColumn>Adress <p-sortIcon field="adress"></p-sortIcon></th>
+                    <th pSortableColumn="district" pResizableColumn>District <p-sortIcon field="district"></p-sortIcon></th>
+                    <th pSortableColumn="gstPc" pResizableColumn>gstPc <p-sortIcon field="gstPc"></p-sortIcon></th>
+                    <th pSortableColumn="gstNo" pResizableColumn>gstNo <p-sortIcon field="gstNo"></p-sortIcon></th>
+                    <th pSortableColumn="cstNo" pResizableColumn>cstNo <p-sortIcon field="cstNo"></p-sortIcon></th>
+                    <th pSortableColumn="city" pResizableColumn>City<p-sortIcon field="city"></p-sortIcon></th>
+                    <th pSortableColumn="address1" pResizableColumn>Address1 <p-sortIcon field="address1"></p-sortIcon></th>
+                    <th pSortableColumn="lType" pResizableColumn>LType<p-sortIcon field="lType"></p-sortIcon></th>
+                    <th pSortableColumn="locType" pResizableColumn>LocType <p-sortIcon field="locType"></p-sortIcon></th>
+                    <th pSortableColumn="address2" pResizableColumn>Address2<p-sortIcon field="address2"></p-sortIcon></th>
+                    <th pSortableColumn="address3" pResizableColumn>Address3 <p-sortIcon field="address3"></p-sortIcon></th>
+                    <th pSortableColumn="state" pResizableColumn>State <p-sortIcon field="state"></p-sortIcon></th>
+                    <th pSortableColumn="pincode" pResizableColumn>Pincode<p-sortIcon field="pincode"></p-sortIcon></th>
+                    <th pSortableColumn="email" pResizableColumn>Email<p-sortIcon field="email"></p-sortIcon></th>
+                    <th pSortableColumn="mobileNo" pResizableColumn>Mobile No <p-sortIcon field="mobileNo"></p-sortIcon></th>
+                    <th pSortableColumn="phNo" pResizableColumn>Phone No<p-sortIcon field="phNo"></p-sortIcon></th>
+                    <th pSortableColumn="contName" pResizableColumn>Contact Name<p-sortIcon field="contName"></p-sortIcon></th>
+                    <th pSortableColumn="telno" pResizableColumn>Tele No<p-sortIcon field="telno"></p-sortIcon></th>
+                   -->
+            <!--th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th-->
+            <!--        <th style="width: 3rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="product" ></p-tableCheckbox>   
+                    </td>
+                    <td>{{product.locationName}}</td>
+                    <td>{{product.locationCode}}</td>
+                    <td>{{product.adress}}</td>
+                    <td>{{product.district}}</td>
+                    <td>{{product.gstPc}}</td>
+                    <td>{{product.gstNo}}</td>
+                    <td>{{product.cstNo}}</td>
+                    <td>{{product.city}}</td>
+                    <td>{{product.address1}}</td>
+                    <td>{{product.lType}}</td>
+                    <td>{{product.locType}}</td>
+                    <td>{{product.address2}}</td>
+                    <td>{{product.address3}}</td>
+                    <td>{{product.state}}</td>
+                    <td>{{product.pincode}}</td>
+                    <td>{{product.email}}</td>
+                    <td>{{product.mobileNo}}</td>
+                    <td>{{product.phNo}}</td>
+                    <td>{{product.telno}}</td>
+                    <td>{{product.contName}}</td>
+                    -->
+            <!--td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td-->
+            <!--  <td>
+                        <button pButton pRipple icon="pi pi-pencil"
+                            class="p-button-rounded p-button-info p-button-icon"
+                            (click)="editProduct(product)"></button>-->
+            <!--button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button-->
+            <!--      </td>
+                </tr>
+            </ng-template>-->
+
+        </p-table>
+    </div>
+
+</div>

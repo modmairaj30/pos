@@ -1,0 +1,49 @@
+import { SalesInvoiceDetails } from "./salesinvoicedetail.model";
+
+export class  SalesInvoice {
+    id?: number;
+    docDt?: Date;
+    docNo?: string;
+    lRno?: string;
+    lRdate?: Date;
+    grossAmt?: number;
+    netAmt?: number;
+    partyId?: number;
+    address?: string;
+    address1?: string;
+    transportref?: string;
+    ordno?: string;
+    orddt?: Date;
+    vat?: number;
+    vatamt?: number;
+    cstamt?: number;
+    tinno?: string;
+    cstno?: string;
+    dlno?: string;
+    dlno21?: string;
+    discamt?: number;
+    locationId?: number;
+    locationCode?: string;
+    paymentType?: any;
+    card?: number;
+    cardNo?: number;
+    expDate?: Date;
+    branch?: string;
+    memberNo?: string;
+    validDate?: Date;
+    years?: number;
+    expiryDate?: Date;
+    dis?: number;
+    discPay?: number;
+    discamtPay?: number;
+    netamtPay?: number;
+    creditCharges?: number;
+    creditDummy?: number;
+    dcno?: string;
+    dcdate?: Date;
+    chqNo?: string;
+    chqDate?: Date;
+    chqAmt?: number;
+    chqIssueBank?: string;
+    invoiceDetList?: Array<SalesInvoiceDetails>
+}
